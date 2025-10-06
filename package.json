@@ -1,34 +1,42 @@
 {
-  "name": "super-son1k",
-  "private": true,
+  "name": "nexus-visual",
   "version": "1.0.0",
   "type": "module",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "private": true,
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "storybook": "turbo run storybook",
-    "clean": "turbo run clean",
-    "dev:web-classic": "turbo run dev --filter=web-classic",
-    "dev:nexus-visual": "turbo run dev --filter=nexus-visual",
-    "dev:ghost-studio": "turbo run dev --filter=ghost-studio",
-    "dev:sonic-daw": "turbo run dev --filter=sonic-daw",
-    "dev:clone-station": "turbo run dev --filter=clone-station",
-    "dev:nova-post-pilot": "turbo run dev --filter=nova-post-pilot",
-    "dev:sanctuary-social": "turbo run dev --filter=sanctuary-social"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --fix",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.7",
+    "framer-motion": "^10.16.16",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.2.0",
+    "@supabase/supabase-js": "^2.39.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "turbo": "^1.10.0",
-    "typescript": "^5.0.0"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "@vitejs/plugin-react": "^4.2.1",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "vitest": "^1.2.2",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/jest-dom": "^6.2.0",
+    "jsdom": "^24.0.0"
   }
 }

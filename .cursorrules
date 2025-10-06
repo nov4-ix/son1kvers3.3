@@ -1,0 +1,481 @@
+.cursorrules ALFA-SSV  # Son1kVers3 -ALFA-SSV Project Context
+ ## Stack
+- React 18 + TypeScript
+- Vite (build tool)
+- Supabase (backend, auth, database)
+- Tailwind CSS (styling)
+- Zustand (state management)
+- Framer Motion (animations)
+ ## Project Structure
+This is a monorepo with multiple apps:
+- /apps/nova-post-pilot - AI Marketing Intelligence Platform (PRIORITY)
+- /apps/ghost-studio - Music production with AI
+- /apps/web-classic - Main dashboard
+- /packages/ui - Shared components
+ ## Current Focus
+Building Nova Post Pilot MVP - AI-powered social media strategy and auto-publishing platform.
+ ## Code Style
+- Use TypeScript strictly
+- Functional components with hooks
+- Tailwind utility classes only (no custom CSS)
+- Async/await for promises
+- Error handling with try-catch
+- Comments in Spanish for business logic
+- Variable names in English
+ ## API Integrations
+- Supabase: Backend, Auth, Storage
+- OpenAI: AI hook generation, audience analysis
+- Instagram Graph API: Auto-publishing
+- Stripe: Payments
+ ## Database
+Using Supabase PostgreSQL with these main tables:
+- users (auth)
+- content_profiles (user content type, platforms)
+- scheduled_posts (posts to publish)
+- hook_suggestions (AI-generated hooks)
+ ## Important Rules
+- Never use localStorage/sessionStorage for critical data (use Supabase)
+- Always handle loading and error states
+- Mobile-first responsive design
+- Optimize for performance (lazy loading, code splitting)
+- Test with real data, not mocks
+ ## Current Sprint
+day 1: Supabase setup + Auth + Onboarding flow
+
+ ## 📁 ESTRUCTURA DEL PROYECTO
+
+ALFA-SSV/ ├── apps/ │ ├── nova-post-pilot/ ← FOCUS PRINCIPAL │ ├── ghost-studio/ ← PAUSADO (Fase 2) │ ├── web-classic/ ← Dashboard general │ └── nexus-visual/ ← Matrix visual ├── packages/ │ ├── ui/ ← Componentes compartidos │ └── utils/ ← Utilidades compartidas └── .cursorrules ← Este archivo
+ ## 🛠️ STACK TECNOLÓGICO
+
+### Frontend
+- **Framework:** React 18 con TypeScript (strict mode)
+- **Build:** Vite (no Webpack, no CRA)
+- **Styling:** Tailwind CSS únicamente (NO custom CSS, NO styled-components)
+- **State:** Zustand para global state (NO Redux, NO Context API para state complejo)
+- **Routing:** React Router v6
+- **Animations:** Framer Motion
+- **Forms:** React Hook Form + Zod validation
+
+### Backend & Services
+- **Backend:** Supabase (Auth + PostgreSQL + Storage + Realtime)
+- **AI:** OpenAI API (GPT-4 para análisis y generación)/Qwen open source
+- **Payments:** Stripe (Checkout + Webhooks)
+- **generator music AI sunoAPI.com  Social APIs:** Instagram Graph API, TikTok API (próximamente)
+
+### Dev Tools
+- **Linter:** ESLint
+- **Formatter:** Prettier
+- **Types:** TypeScript strict
+- **Testing:** Vitest (NO Jest)
+
+## 🎨 DESIGN SYSTEM
+
+### Colores (Tailwind classes) Fondo principal: bg-[#0A0C10] (carbón) Color primario: text-[#00FFE7] (cian) Color secundario: text-[#B84DFF] (magenta) Acento: text-[#9AF7EE] (acento cian)  ### Efectos
+- Glassmorphism: `backdrop-blur-xl bg-white/5 border border-white/10`
+- Glow: `shadow-[0_0_15px_rgba(0,255,231,0.3)]`
+- Hover transitions: `transition-all duration-300`
+
+### Typography
+- Headings: `font-bold text-2xl md:text-4xl`
+- Body: `text-sm md:text-base`
+- Monospace: `font-mono` (para código)
+
+## 📝 REGLAS DE CÓDIGO
+
+### General
+1. **TypeScript:** Siempre usa TypeScript. NO uses `any`, usa `unknown` o tipos específicos.
+2. **Funcional:** Componentes funcionales con hooks (NO class components).
+3. **Async/Await:** Para promesas (NO `.then().catch()`).
+4. **Error Handling:** Siempre `try-catch` en async functions.
+5. **Naming:**
+   - Variables/funciones: `camelCase` (inglés)
+   - Componentes: `PascalCase`
+   - Constantes: `UPPER_SNAKE_CASE`
+   - Archivos: `kebab-case.tsx` o `PascalCase.tsx` para componentes
+6. **Imports:** Orden: React → Third-party → Local → Types
+7. **Comments:** Solo para lógica compleja. Código auto-explicativo preferido.
+
+### React Específico
+```tsx
+// ✅ CORRECTO
+export function MyComponent({ userId }: { userId: string }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  useEffect(() => {
+    // Logic here
+  }, [userId]);
+  
+  if (loading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage message={error} />;
+  
+  return <div>Content</div>;
+}
+
+// ❌ INCORRECTO
+class MyComponent extends React.Component { ... }
+const MyComponent = () => { ... } // Usar function declaration
+State Management
+
+
+tsx
+// Zustand store pattern
+import { create } from 'zustand';
+
+interface AuthState {
+  user: User | null;
+  isLoading: boolean;
+  signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
+}
+
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  isLoading: false,
+  signIn: async (email, password) => {
+    set({ isLoading: true });
+    try {
+      // Logic
+      set({ user: result });
+    } catch (error) {
+      throw error;
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+  signOut: async () => { /* ... */ }
+}));
+
+Supabase Patterns
+
+
+tsx
+// ✅ Con error handling completo
+async function fetchUserProfile(userId: string) {
+  try {
+    const { data, error } = await supabase
+      .from('content_profiles')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
+    
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    throw new Error('Failed to fetch user profile');
+  }
+}
+
+OpenAI Patterns
+
+
+tsx
+// Siempre con timeout y error handling
+async function generateHooks(prompt: string) {
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        { role: "system", content: "Eres un copywriter experto..." },
+        { role: "user", content: prompt }
+      ],
+      response_format: { type: "json_object" }, // Siempre que necesites JSON
+      max_tokens: 1000,
+      temperature: 0.8
+    });
+    
+    return JSON.parse(completion.choices[0].message.content || '{}');
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`OpenAI error: ${error.message}`);
+    }
+    throw error;
+  }
+}
+
+🚫 NO HACER (IMPORTANTE)
+
+Storage
+* ❌ NUNCA uses localStorage o sessionStorage para datos críticos
+* ✅ Usa Supabase para persistencia
+* ✅ localStorage solo para preferencias UI no críticas (theme, sidebar collapsed, 
+* etc)
+
+Styling
+* ❌ NO crear archivos CSS custom
+* ❌ NO usar inline styles con style={{...}}
+* ❌ NO usar CSS-in-JS libraries (styled-components, emotion)
+* ✅ SOLO Tailwind utility classes
+
+State
+* ❌ NO usar Redux (overkill para este proyecto)
+* ❌ NO abusar de Context API (solo para theme, i18n)
+* ✅ Zustand para global state
+* ✅ React Hook Form para form state
+
+APIs
+* ❌ NO llamar APIs directamente desde componentes
+* ✅ Crear funciones en /lib y usarlas desde stores o hooks
+
+📦 ESTRUCTURA DE ARCHIVOS
+Componente típico
+
+
+components/
+├── HookGenerator/
+│   ├── index.tsx              ← Export barrel
+│   ├── HookGenerator.tsx      ← Main component
+│   ├── HookCard.tsx           ← Sub-component
+│   ├── useHookGenerator.ts    ← Custom hook
+│   └── types.ts               ← Types específicos
+Página típica
+
+
+pages/
+├── Dashboard/
+│   ├── index.tsx
+│   ├── Dashboard.tsx
+│   ├── StatsCard.tsx
+│   └── RecentPosts.tsx
+
+🎯 PATTERNS ESPECÍFICOS DEL PROYECTO
+Protected Routes
+
+
+tsx
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { user, isLoading } = useAuthStore();
+  
+  if (isLoading) return <LoadingScreen />;
+  if (!user) return <Navigate to="/login" replace />;
+  
+  return <>{children}</>;
+}
+Loading States
+
+
+tsx
+// Siempre mostrar skeletons, no spinners genéricos
+{isLoading ? (
+  <div className="space-y-4">
+    <Skeleton className="h-20 w-full" />
+    <Skeleton className="h-20 w-full" />
+  </div>
+) : (
+  <ActualContent />
+)}
+Error States
+
+
+tsx
+// Toast para errores transitorios
+toast.error('Failed to save post');
+
+// Error boundary para errores críticos
+<ErrorBoundary fallback={<ErrorPage />}>
+  <App />
+</ErrorBoundary>
+
+🔧 ENVIRONMENT VARIABLES
+
+
+bash
+# .env.local (NUNCA commitear)
+VITE_SUPABASE_URL=https://xxx.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJxxx...
+VITE_OPENAI_API_KEY=sk-xxx...
+VITE_STRIPE_PUBLIC_KEY=pk_test_xxx...
+📊 DATABASE SCHEMA (Supabase)
+content_profiles
+
+
+sql
+CREATE TABLE content_profiles (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  content_type TEXT NOT NULL,
+  description TEXT,
+  platforms TEXT[] NOT NULL,
+  posting_frequency TEXT,
+  ai_analysis JSONB,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+scheduled_posts
+
+
+sql
+CREATE TABLE scheduled_posts (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  profile_id UUID REFERENCES content_profiles(id),
+  caption TEXT NOT NULL,
+  platform TEXT NOT NULL,
+  media_url TEXT,
+  hashtags TEXT[],
+  scheduled_time TIMESTAMPTZ NOT NULL,
+  status TEXT DEFAULT 'pending', -- pending, published, failed
+  published_at TIMESTAMPTZ,
+  error_message TEXT,
+  analytics JSONB,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+hook_suggestions
+
+
+sql
+CREATE TABLE hook_suggestions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  profile_id UUID REFERENCES content_profiles(id),
+  hook_text TEXT NOT NULL,
+  variant TEXT, -- casual, formal, clickbait
+  platform TEXT,
+  is_favorite BOOLEAN DEFAULT false,
+  used BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+🚀 COMANDOS DE DESARROLLO
+
+
+bash
+# Desarrollo
+npm run dev                    # Inicia todos los apps
+npm run dev:nova-post-pilot    # Solo Nova Post Pilot
+
+# Build
+npm run build                  # Build todas las apps
+npm run build --filter=nova-post-pilot  # Solo Nova
+
+# Testing
+npm run test                   # Tests con Vitest
+npm run test:ui                # UI de testing
+
+# Linting
+npm run lint                   # ESLint
+npm run format                 # Prettier
+
+💡 CUANDO GENERES CÓDIGO
+1. Siempre incluye error handling completo
+2. Siempre incluye loading states
+3. Siempre incluye TypeScript types
+4. Usa async/await, no callbacks
+5. Componentes pequeños y reutilizables
+6. Comenta SOLO lógica compleja
+7. Mobile-first (responsive por defecto)
+8. Accessibility (ARIA labels, semantic HTML)
+
+🎯 PRIORIDADES ACTUALES
+1. ✅ Setup básico + Auth
+2. ✅ Onboarding + AI Analysis
+3. 🔄 Hook Generator (EN PROGRESO)
+4. ⏳ Post Scheduler
+5. ⏳ Instagram Auto-publish
+6. ⏳ Stripe + Monetización
+7. ⏳ Landing Page + Launch
+
+📚 REFERENCIAS ÚTILES
+* Supabase Docs: https://supabase.com/docs
+* OpenAI API: https://platform.openai.com/docs
+* Instagram Graph API: https://developers.facebook.com/docs/instagram-api
+* Tailwind CSS: https://tailwindcss.com/docs
+* Framer Motion: https://www.framer.com/motion
+
+⚡ OPTIMIZACIÓN
+* Code splitting por ruta (React.lazy)
+* Imágenes optimizadas (WebP, lazy load)
+* Debounce en búsquedas (300ms)
+* Throttle en scroll events (100ms)
+* Memoización con React.memo para componentes pesados
+
+RECORDATORIO: Este proyecto está en modo SPRINT. Prioriza funcionalidad sobre perfección. Ship fast, iterate faster. 🚀
+
+
+---
+
+## **AHORA SÍ, GUARDA EL ARCHIVO Y...**
+
+### **VERIFICA QUE CURSOR LO DETECTÓ:**
+
+1. Abre Cursor
+2. Abre Composer (`Cmd/Ctrl + I`)
+3. Escribe: `@Codebase resume las reglas del proyecto`
+4. Si Cursor menciona "Nova Post Pilot", "Supabase", "3 semanas", etc → **✅ FUNCIONÓ**
+
+---
+
+## **SIGUIENTE PASO: PRIMER MEGA-PROMPT**
+
+Ahora que Cursor tiene contexto completo, vamos con el **MEGA-PROMPT DÍA 1**:
+@Codebase SETUP COMPLETO DE NOVA POST PILOT - DÍA 1
+CONTEXTO: Voy a construir Nova Post Pilot en 3 semanas. Hoy es día 1: Setup base + Auth completo.
+GENERA TODO EN UNA SOLA PASADA:
+
+1. PROJECT INIT
+* package.json con todas las dependencias necesarias
+* vite.config.ts optimizado
+* tsconfig.json (strict mode)
+* tailwind.config.js (tema oscuro, colores del proyecto)
+* .env.local.example
+1. FOLDER STRUCTURE src/ ├── components/ │ ├── layout/ │ │ ├── Layout.tsx (Sidebar + Header + Main content area) │ │ ├── Sidebar.tsx (Nav links, user avatar) │ │ └── Header.tsx (Page title, actions) │ ├── auth/ │ │ ├── LoginForm.tsx │ │ └── SignupForm.tsx │ └── ui/ │ ├── Button.tsx │ ├── Input.tsx │ ├── LoadingSpinner.tsx │ └── ErrorMessage.tsx ├── pages/ │ ├── Login.tsx │ ├── Signup.tsx │ ├── Dashboard.tsx (vacío por ahora, solo layout) │ └── NotFound.tsx ├── lib/ │ ├── supabase.ts (cliente configurado) │ └── utils.ts (cn helper para classnames) ├── hooks/ │ └── useAuth.ts (auth state y funciones) ├── store/ │ └── authStore.ts (Zustand store) ├── types/ │ ├── database.ts (tipos de Supabase) │ └── auth.ts (tipos de auth) ├── App.tsx (routing) └── main.tsx
+2. 
+3. SUPABASE SETUP lib/supabase.ts debe incluir:
+* Cliente configurado
+* Funciones helper: signIn, signUp, signOut, getUser
+* Error handling
+* 
+1. AUTH STORE (Zustand) store/authStore.ts:
+* user: User | null
+* isLoading: boolean
+* isAuthenticated: boolean
+* signIn(email, password)
+* signUp(email, password)
+* signOut()
+* initialize() (check session on mount)
+1. ROUTING (React Router v6) App.tsx:
+* / → Dashboard (protected)
+* /login → Login page
+* /signup → Signup page
+* /* → 404
+Protected route wrapper que redirige a /login si no auth.
+
+1. AUTH PAGES pages/Login.tsx:
+* Form con email + password
+* Link a signup
+* Google OAuth button (UI, funcionalidad después)
+* Error handling
+* Validación con react-hook-form + zod
+
+pages/Signup.tsx:
+* Similar a Login
+* Confirmación de password
+* Link a login
+* 
+1. LAYOUT COMPONENT components/layout/Layout.tsx:
+* Sidebar colapsable (desktop)
+* Hamburger menu (mobile)
+* Header con título dinámico
+* Main content area
+
+components/layout/Sidebar.tsx:
+* Logo/título del app
+* Nav links: Dashboard, Hooks, Scheduler, Analytics
+* User section abajo con avatar + logout
+* Active state en link actual
+1. UI COMPONENTS Tailwind + Framer Motion para animaciones suaves. Glassmorphism style según design system.
+2. 
+3. SQL SCHEMA Genera archivo supabase_schema.sql con:
+* content_profiles table
+* scheduled_posts table
+* hook_suggestions table (Según el schema en .cursorrules)
+
+REQUIREMENTS:
+* TypeScript strict
+* Error handling completo
+* Loading states
+* Mobile responsive
+* Dark theme
+* Glassmorphism effects
+* Smooth animations
+OUTPUT: TODOS los archivos mencionados. SOLO CÓDIGO, sin explicaciones. Production-ready con error boundaries.
+
