@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-carbon text-white antialiased;
+  }
+  
+  * {
+    @apply border-white/10;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+  
+  .glow-cyan {
+    @apply shadow-[0_0_15px_rgba(0,255,231,0.3)];
+  }
+  
+  .glow-magenta {
+    @apply shadow-[0_0_15px_rgba(184,77,255,0.3)];
+  }
+}
