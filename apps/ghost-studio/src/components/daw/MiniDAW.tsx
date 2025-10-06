@@ -1,10 +1,10 @@
 // apps/ghost-studio/src/components/daw/MiniDAW.tsx
 import { useState, useRef, useEffect } from 'react';
 import { Mic, Square, Play, Pause, RotateCcw, Layers, Trash2 } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { useDAW } from '@/hooks/useDAW';
-import type { AudioFile } from '@/types/audio';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/Card';
+import { useDAW } from '../../hooks/useDAW';
+import type { AudioFile } from '../../types/audio';
 
 interface Props {
   onRecordingComplete: (file: AudioFile) => void;

@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "name": "ghost-studio",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_SUPABASE_URL": "@vite_supabase_url",
+    "VITE_SUPABASE_ANON_KEY": "@vite_supabase_anon_key",
+    "VITE_SUNO_API_KEY": "@vite_suno_api_key",
+    "VITE_APP_URL": "https://ghost-studio.son1kvers3.com",
+    "VITE_ENVIRONMENT": "production"
+  }
+}

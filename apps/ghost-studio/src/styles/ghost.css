@@ -1,0 +1,371 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Son1kVerse Design System - Ghost Studio Styles */
+
+/* CSS Variables for Design Tokens */
+:root {
+  /* Colors */
+  --color-carbon: #0A0C10;
+  --color-cyan: #00FFE7;
+  --color-magenta: #B84DFF;
+  --color-accent: #9AF7EE;
+  --color-primary: #00FFE7;
+  --color-secondary: #B84DFF;
+  --color-success: #00FF88;
+  --color-warning: #FFAA00;
+  --color-error: #FF4444;
+  --color-info: #9AF7EE;
+  --color-ghost: #1A1D26;
+  --color-phantom: #2A2D36;
+  
+  /* Typography */
+  --font-mono: 'CoinDingDong', 'Press Start 2P', 'Courier New', monospace;
+  --font-sans: 'Inter', 'Roboto', system-ui, sans-serif;
+  --font-display: 'CoinDingDong', 'Press Start 2P', monospace;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Shadows */
+  --shadow-glow-cyan: 0 0 20px rgba(0, 255, 231, 0.5);
+  --shadow-glow-magenta: 0 0 20px rgba(184, 77, 255, 0.5);
+  --shadow-glow-accent: 0 0 20px rgba(154, 247, 238, 0.5);
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-carbon);
+    color: var(--color-cyan);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(0, 255, 231, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(184, 77, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(154, 247, 238, 0.05) 0%, transparent 50%);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Son1kVerse Base Components */
+  .son1k-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  .son1k-grid {
+    display: grid;
+    gap: var(--spacing-lg);
+  }
+
+  .son1k-flex {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .son1k-text-mono {
+    font-family: var(--font-mono);
+  }
+
+  .son1k-text-display {
+    font-family: var(--font-display);
+  }
+
+  .son1k-glow-cyan {
+    box-shadow: var(--shadow-glow-cyan);
+  }
+
+  .son1k-glow-magenta {
+    box-shadow: var(--shadow-glow-magenta);
+  }
+
+  .son1k-glow-accent {
+    box-shadow: var(--shadow-glow-accent);
+  }
+
+  /* Glass Effects */
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+  
+  .glass-strong {
+    @apply backdrop-blur-2xl bg-white/10 border border-white/20;
+  }
+  
+  .ghost-glass {
+    backdrop-filter: blur(10px);
+    background: rgba(26, 29, 38, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .phantom-glass {
+    backdrop-filter: blur(10px);
+    background: rgba(42, 45, 54, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Glow Effects */
+  .glow-cyan {
+    box-shadow: var(--shadow-glow-cyan);
+  }
+  
+  .glow-magenta {
+    box-shadow: var(--shadow-glow-magenta);
+  }
+  
+  .glow-accent {
+    box-shadow: var(--shadow-glow-accent);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyan via-magenta to-accent bg-clip-text text-transparent;
+  }
+
+  .neon-glow {
+    box-shadow: 
+      0 0 30px rgba(0, 255, 231, 0.5),
+      0 0 60px rgba(184, 77, 255, 0.3);
+  }
+
+  /* Cyber Grid Background */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 231, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 231, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Ghost Studio Specific Components */
+  .knob-track {
+    width: 8px;
+    height: 64px;
+    background: var(--color-phantom);
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .knob-thumb {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--color-cyan), var(--color-magenta));
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .waveform-container {
+    width: 100%;
+    height: 128px;
+    background: rgba(26, 29, 38, 0.8);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+  }
+
+  .transport-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    background: rgba(26, 29, 38, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .transport-button:hover {
+    border-color: rgba(0, 255, 231, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 231, 0.3);
+  }
+
+  .transport-button.active {
+    border-color: var(--color-cyan);
+    box-shadow: 0 0 15px rgba(0, 255, 231, 0.5);
+  }
+
+  /* Button Base Styles */
+  .son1k-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: 1px solid var(--color-cyan);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .son1k-btn:hover {
+    background: rgba(0, 255, 231, 0.1);
+    box-shadow: var(--shadow-glow-cyan);
+    transform: translateY(-1px);
+  }
+
+  .son1k-btn:active {
+    transform: translateY(0);
+  }
+
+  .son1k-btn-primary {
+    background: var(--color-primary);
+    color: var(--color-carbon);
+  }
+
+  .son1k-btn-primary:hover {
+    background: var(--color-accent);
+    box-shadow: var(--shadow-glow-accent);
+  }
+
+  .son1k-btn-secondary {
+    border-color: var(--color-magenta);
+    color: var(--color-magenta);
+  }
+
+  .son1k-btn-secondary:hover {
+    background: rgba(184, 77, 255, 0.1);
+    box-shadow: var(--shadow-glow-magenta);
+  }
+
+  /* Card Base Styles */
+  .son1k-card {
+    background: rgba(10, 12, 16, 0.8);
+    border: 1px solid var(--color-cyan);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .son1k-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-glow-accent);
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 0 10px rgba(0, 255, 231, 0.5);
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 20px rgba(0, 255, 231, 0.3); }
+    to { box-shadow: 0 0 30px rgba(0, 255, 231, 0.6); }
+  }
+
+  .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+}
+
+/* Audio specific styles */
+.audio-visualizer {
+  background: linear-gradient(45deg, rgba(0, 255, 231, 0.1), rgba(184, 77, 255, 0.1));
+}
+
+.audio-waveform {
+  stroke: url(#waveformGradient);
+  stroke-width: 2;
+  fill: none;
+}
+
+.audio-progress {
+  stroke: #00FFE7;
+  stroke-width: 3;
+  fill: none;
+}
+
+/* Knob specific styles */
+.knob-value {
+  @apply text-xs text-white/70 font-mono;
+}
+
+.knob-label {
+  @apply text-sm text-white/90 font-medium;
+}
+
+/* Session specific styles */
+.session-card {
+  @apply ghost-glass rounded-lg p-4 border border-white/10 hover:border-cyan/30 transition-all duration-200;
+}
+
+.session-card.active {
+  @apply border-cyan shadow-[0_0_15px_rgba(0,255,231,0.3)];
+}
+
+/* Job specific styles */
+.job-status {
+  @apply px-2 py-1 rounded text-xs font-medium;
+}
+
+.job-status.queued {
+  @apply bg-yellow-500/20 text-yellow-300 border border-yellow-500/30;
+}
+
+.job-status.running {
+  @apply bg-blue-500/20 text-blue-300 border border-blue-500/30;
+}
+
+.job-status.done {
+  @apply bg-green-500/20 text-green-300 border border-green-500/30;
+}
+
+.job-status.error {
+  @apply bg-red-500/20 text-red-300 border border-red-500/30;
+}
