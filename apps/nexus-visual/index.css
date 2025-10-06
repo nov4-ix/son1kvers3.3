@@ -1,0 +1,594 @@
+/* Variables CSS - Paleta fija */
+:root {
+  --bg: #0A0C10;
+  --cyan: #00FFE7;
+  --mag: #B84DFF;
+  --dim: #9AF7EE;
+}
+
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--cyan);
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Tipografía 8-bit - CoinDingDong */
+@font-face {
+  font-family: 'CoinDingDong';
+  src: url('data:font/woff2;base64,') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback para CoinDingDong si no está disponible */
+.nexus-title,
+.nexus-sub {
+  font-family: 'CoinDingDong', 'Courier New', monospace;
+}
+
+/* Título principal */
+.nexus-title {
+  font-size: clamp(36px, 7vw, 92px);
+  color: var(--cyan);
+  text-shadow: 
+    0 0 12px #00ffe7cc,
+    0 0 32px #00ffe777;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 0;
+}
+
+/* Subtítulo */
+.nexus-sub {
+  font-size: clamp(18px, 3vw, 32px);
+  color: var(--dim);
+  margin-top: 28px;
+  text-shadow: 0 0 8px #00ffe766;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+/* Contenedor principal de la escena */
+.nexus-scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Contenedor del aro */
+.ring-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+/* Aro morado único con efectos glitch */
+.ring {
+  width: 200px;
+  height: 200px;
+  border: 2px solid var(--mag);
+  border-radius: 50%;
+  position: relative;
+  
+  /* Glow morado mejorado */
+  box-shadow: 
+    0 0 20px var(--mag),
+    0 0 40px rgba(184, 77, 255, 0.5),
+    inset 0 0 20px rgba(184, 77, 255, 0.3);
+  
+  /* Animaciones de glitch combinadas */
+  animation: 
+    glitchShift 0.1s infinite steps(2),
+    glitchBlink 2.3s infinite,
+    glitchErase 1.7s infinite;
+}
+
+/* Pulso adicional para el aro */
+.ring-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
+  border: 1px solid var(--mag);
+  border-radius: 50%;
+  pointer-events: none;
+  
+  box-shadow: 
+    0 0 30px var(--mag),
+    inset 0 0 30px rgba(184, 77, 255, 0.2);
+}
+
+/* Animación de micro-translate (vibración) */
+@keyframes glitchShift {
+  0%, 50% { transform: translate(0, 0); }
+  25% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, -1px); }
+}
+
+/* Animación de parpadeo irregular */
+@keyframes glitchBlink {
+  0%, 90%, 100% { opacity: 1; }
+  5% { opacity: 0.8; }
+  10% { opacity: 0.3; }
+  15% { opacity: 0.9; }
+  20% { opacity: 0.1; }
+  25% { opacity: 1; }
+  30% { opacity: 0.7; }
+  35% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+/* Animación de "borrado" por frames */
+@keyframes glitchErase {
+  0%, 85%, 100% { 
+    border-width: 2px;
+    opacity: 1;
+  }
+  10% { 
+    border-width: 0px;
+    opacity: 0.3;
+  }
+  20% { 
+    border-width: 4px;
+    opacity: 0.8;
+  }
+  30% { 
+    border-width: 1px;
+    opacity: 0.5;
+  }
+  40% { 
+    border-width: 3px;
+    opacity: 0.9;
+  }
+  50% { 
+    border-width: 0px;
+    opacity: 0.2;
+  }
+  60% { 
+    border-width: 2px;
+    opacity: 1;
+  }
+}
+
+/* Contenido centrado */
+.nexus-center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Información de íconos */
+.icon-info {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid var(--cyan);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  animation: infoSlideIn 0.5s ease-out;
+  pointer-events: auto;
+}
+
+.icon-info h3 {
+  font-family: 'CoinDingDong', 'Courier New', monospace;
+  font-size: clamp(16px, 2vw, 24px);
+  margin-bottom: 8px;
+  text-shadow: 0 0 8px currentColor;
+}
+
+.icon-info p {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 1.5vw, 16px);
+  color: var(--dim);
+  margin-bottom: 8px;
+}
+
+.status-indicator {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(10px, 1.2vw, 14px);
+  color: var(--cyan);
+  text-shadow: 0 0 4px var(--cyan);
+  opacity: 0.8;
+}
+
+/* Animación de entrada para información */
+@keyframes infoSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Contenedor de íconos */
+.icons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Íconos individuales mejorados */
+.nexus-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+}
+
+.icon-symbol {
+  font-size: 28px;
+  color: var(--cyan);
+  text-shadow: 0 0 8px var(--cyan);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  position: relative;
+}
+
+.icon-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--icon-color, rgba(0, 255, 231, 0.3)) 0%, transparent 70%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: blur(2px);
+}
+
+.status-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--icon-color, var(--cyan));
+  box-shadow: 0 0 6px var(--icon-color, var(--cyan));
+  opacity: 0.8;
+  animation: statusPulse 2s infinite;
+}
+
+/* Estados de los íconos */
+.nexus-icon.active {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.nexus-icon.active .icon-symbol {
+  color: var(--icon-color, var(--cyan));
+  text-shadow: 0 0 20px var(--icon-color, var(--cyan));
+  transform: scale(1.1);
+}
+
+.nexus-icon.active .icon-glow {
+  opacity: 1;
+  width: 80px;
+  height: 80px;
+}
+
+/* Hover mejorado en íconos */
+.nexus-icon:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.nexus-icon:hover .icon-symbol {
+  color: var(--icon-color, var(--cyan));
+  text-shadow: 0 0 20px var(--icon-color, var(--cyan));
+  transform: scale(1.1);
+}
+
+.nexus-icon:hover .icon-glow {
+  opacity: 0.8;
+  width: 70px;
+  height: 70px;
+}
+
+/* Animación de pulso para status dot */
+@keyframes statusPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Canvas de Matrix Rain */
+.matrix-canvas {
+  background: #0A0C10;
+  mix-blend-mode: normal;
+}
+
+/* Overlay de barras glitch horizontales */
+.glitch-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 231, 0.03) 2px,
+      rgba(0, 255, 231, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 1px,
+      rgba(184, 77, 255, 0.02) 1px,
+      rgba(184, 77, 255, 0.02) 2px
+    );
+  z-index: 1;
+  mix-blend-mode: screen;
+  opacity: 0.22;
+  pointer-events: none;
+  
+  /* Animaciones de interferencia */
+  animation: 
+    stripesShift 3.2s infinite linear,
+    stripesFlicker 1.8s infinite;
+}
+
+/* Animación de movimiento lateral de las rayas */
+@keyframes stripesShift {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(1px); }
+  75% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+/* Animación de parpadeo de las rayas */
+@keyframes stripesFlicker {
+  0%, 100% { opacity: 0.22; }
+  20% { opacity: 0.18; }
+  40% { opacity: 0.28; }
+  60% { opacity: 0.15; }
+  80% { opacity: 0.25; }
+}
+
+/* Máscara radial suave para limpiar el área del centro */
+.glitch-lines::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, transparent 0%, transparent 60%, rgba(10, 12, 16, 0.8) 100%);
+  pointer-events: none;
+}
+
+/* Controles de rendimiento */
+.performance-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.perf-toggle-btn {
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.perf-toggle-btn:hover {
+  background: rgba(0, 255, 231, 0.1);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+.performance-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(10, 12, 16, 0.95);
+  border: 1px solid var(--cyan);
+  border-radius: 8px;
+  padding: 20px;
+  min-width: 250px;
+  z-index: 1000;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 20px rgba(0, 255, 231, 0.3);
+}
+
+.perf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--cyan);
+  padding-bottom: 10px;
+}
+
+.perf-header h3 {
+  color: var(--cyan);
+  font-family: 'CoinDingDong', 'Courier New', monospace;
+  font-size: 16px;
+  margin: 0;
+}
+
+.perf-close-btn {
+  background: none;
+  border: none;
+  color: var(--cyan);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.perf-section {
+  margin-bottom: 15px;
+}
+
+.perf-section label {
+  display: block;
+  color: var(--dim);
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quality-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.quality-btn, .toggle-btn {
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.quality-btn.active, .toggle-btn.active {
+  background: var(--cyan);
+  color: var(--bg);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.quality-btn:hover, .toggle-btn:hover {
+  background: rgba(0, 255, 231, 0.2);
+}
+
+.fps-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fps-value {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid;
+}
+
+.fps-value.low {
+  color: #ff4444;
+  border-color: #ff4444;
+}
+
+.fps-value.medium {
+  color: #ffaa00;
+  border-color: #ffaa00;
+}
+
+.fps-value.high {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.perf-info {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(0, 255, 231, 0.3);
+}
+
+.perf-info small {
+  color: var(--dim);
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ring {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .nexus-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .icon-symbol {
+    font-size: 18px;
+  }
+  
+  .glitch-lines::after {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .performance-controls {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .ring {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .nexus-icon {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .icon-symbol {
+    font-size: 16px;
+  }
+}

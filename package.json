@@ -1,0 +1,34 @@
+{
+  "name": "super-son1k",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "storybook": "turbo run storybook",
+    "clean": "turbo run clean",
+    "dev:web-classic": "turbo run dev --filter=web-classic",
+    "dev:nexus-visual": "turbo run dev --filter=nexus-visual",
+    "dev:ghost-studio": "turbo run dev --filter=ghost-studio",
+    "dev:sonic-daw": "turbo run dev --filter=sonic-daw",
+    "dev:clone-station": "turbo run dev --filter=clone-station",
+    "dev:nova-post-pilot": "turbo run dev --filter=nova-post-pilot",
+    "dev:sanctuary-social": "turbo run dev --filter=sanctuary-social"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

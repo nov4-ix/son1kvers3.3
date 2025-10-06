@@ -1,0 +1,666 @@
+/* Mobile Sonic DAW Styles - Estilos para Sonic DAW móvil del universo Son1kVerse */
+
+.mobile-sonic-daw {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1d26 50%, #0a0a0a 100%);
+  color: #ffffff;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  overflow: hidden;
+}
+
+/* Header */
+.mobile-sonic-daw__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: rgba(26, 29, 38, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+  z-index: 100;
+}
+
+.mobile-sonic-daw__title {
+  text-align: center;
+  flex: 1;
+}
+
+.mobile-sonic-daw__title h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00d4ff 0%, #ff0080 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mobile-sonic-daw__title p {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: #a0a0a0;
+  opacity: 0.8;
+}
+
+.mobile-sonic-daw__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* View Navigation */
+.mobile-sonic-daw__views {
+  display: flex;
+  padding: 12px 16px;
+  background: rgba(26, 29, 38, 0.8);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  gap: 8px;
+}
+
+.mobile-sonic-daw__views .touch-button {
+  flex: 1;
+  min-height: 60px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mobile-sonic-daw__views .touch-button--primary {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Transport Controls */
+.mobile-sonic-daw__transport {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: rgba(26, 29, 38, 0.9);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.mobile-sonic-daw__transport-left,
+.mobile-sonic-daw__transport-right {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-sonic-daw__transport-center {
+  display: flex;
+  gap: 16px;
+}
+
+.mobile-sonic-daw__transport .touch-button {
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mobile-sonic-daw__transport .touch-button--primary {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+}
+
+.mobile-sonic-daw__transport .touch-button--secondary {
+  background: linear-gradient(135deg, #ff0080 0%, #cc0066 100%);
+  box-shadow: 0 6px 20px rgba(255, 0, 128, 0.5);
+}
+
+/* Time Display */
+.mobile-sonic-daw__time-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(26, 29, 38, 0.8);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.mobile-sonic-daw__time-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+.mobile-sonic-daw__current-time {
+  color: #00d4ff;
+}
+
+.mobile-sonic-daw__time-separator {
+  color: #a0a0a0;
+}
+
+.mobile-sonic-daw__total-time {
+  color: #a0a0a0;
+}
+
+.mobile-sonic-daw__tempo-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mobile-sonic-daw__bpm {
+  color: #ff0080;
+}
+
+.mobile-sonic-daw__time-signature {
+  color: #a0a0a0;
+}
+
+/* Main Content */
+.mobile-sonic-daw__content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Timeline View */
+.mobile-sonic-daw__timeline-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mobile-sonic-daw__timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.mobile-sonic-daw__timeline-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+.mobile-sonic-daw__timeline-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.mobile-sonic-daw__track {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background: rgba(26, 29, 38, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.mobile-sonic-daw__track--selected {
+  border-color: #00d4ff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.mobile-sonic-daw__track-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.mobile-sonic-daw__track-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mobile-sonic-daw__track-controls .touch-button {
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.mobile-sonic-daw__track-regions {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-sonic-daw__region {
+  padding: 8px 12px;
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+}
+
+.mobile-sonic-daw__region-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+/* Mixer View */
+.mobile-sonic-daw__mixer-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mobile-sonic-daw__mixer-header {
+  margin-bottom: 16px;
+}
+
+.mobile-sonic-daw__mixer-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+.mobile-sonic-daw__mixer-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.mobile-sonic-daw__channel {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background: rgba(26, 29, 38, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.mobile-sonic-daw__channel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.mobile-sonic-daw__channel-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mobile-sonic-daw__channel-fader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mobile-sonic-daw__volume-fader,
+.mobile-sonic-daw__pan-fader {
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.mobile-sonic-daw__volume-fader::-webkit-slider-thumb,
+.mobile-sonic-daw__pan-fader::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.4);
+}
+
+.mobile-sonic-daw__volume-fader::-moz-range-thumb,
+.mobile-sonic-daw__pan-fader::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.4);
+}
+
+.mobile-sonic-daw__volume-value,
+.mobile-sonic-daw__pan-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a0a0a0;
+  text-align: center;
+}
+
+/* Plugins View */
+.mobile-sonic-daw__plugins-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mobile-sonic-daw__plugins-header {
+  margin-bottom: 16px;
+}
+
+.mobile-sonic-daw__plugins-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+.mobile-sonic-daw__plugins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.mobile-sonic-daw__plugin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: rgba(26, 29, 38, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.mobile-sonic-daw__plugin-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-sonic-daw__plugin-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mobile-sonic-daw__plugin-category {
+  font-size: 12px;
+  color: #a0a0a0;
+}
+
+/* Browser View */
+.mobile-sonic-daw__browser-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mobile-sonic-daw__browser-header {
+  margin-bottom: 16px;
+}
+
+.mobile-sonic-daw__browser-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+.mobile-sonic-daw__browser-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+/* Visualizer */
+.mobile-sonic-daw__visualizer {
+  height: 150px;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 212, 255, 0.3);
+  overflow: hidden;
+}
+
+.mobile-sonic-daw__canvas {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1d26 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .mobile-sonic-daw__header {
+    padding: 12px;
+  }
+  
+  .mobile-sonic-daw__title h1 {
+    font-size: 18px;
+  }
+  
+  .mobile-sonic-daw__title p {
+    font-size: 11px;
+  }
+  
+  .mobile-sonic-daw__views {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+  
+  .mobile-sonic-daw__views .touch-button {
+    min-height: 50px;
+    font-size: 11px;
+  }
+  
+  .mobile-sonic-daw__transport {
+    padding: 12px;
+  }
+  
+  .mobile-sonic-daw__transport .touch-button {
+    min-width: 50px;
+    min-height: 50px;
+    font-size: 14px;
+  }
+  
+  .mobile-sonic-daw__content {
+    padding: 12px;
+  }
+  
+  .mobile-sonic-daw__track,
+  .mobile-sonic-daw__channel,
+  .mobile-sonic-daw__plugin {
+    padding: 12px;
+  }
+  
+  .mobile-sonic-daw__visualizer {
+    height: 120px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .mobile-sonic-daw__header {
+    padding: 14px;
+  }
+  
+  .mobile-sonic-daw__title h1 {
+    font-size: 19px;
+  }
+  
+  .mobile-sonic-daw__views {
+    padding: 10px 14px;
+  }
+  
+  .mobile-sonic-daw__views .touch-button {
+    min-height: 55px;
+    font-size: 12px;
+  }
+  
+  .mobile-sonic-daw__transport {
+    padding: 14px;
+  }
+  
+  .mobile-sonic-daw__transport .touch-button {
+    min-width: 55px;
+    min-height: 55px;
+    font-size: 15px;
+  }
+  
+  .mobile-sonic-daw__content {
+    padding: 14px;
+  }
+  
+  .mobile-sonic-daw__track,
+  .mobile-sonic-daw__channel,
+  .mobile-sonic-daw__plugin {
+    padding: 14px;
+  }
+  
+  .mobile-sonic-daw__visualizer {
+    height: 135px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mobile-sonic-daw__header {
+    padding: 16px;
+  }
+  
+  .mobile-sonic-daw__title h1 {
+    font-size: 20px;
+  }
+  
+  .mobile-sonic-daw__views {
+    padding: 12px 16px;
+  }
+  
+  .mobile-sonic-daw__views .touch-button {
+    min-height: 60px;
+    font-size: 13px;
+  }
+  
+  .mobile-sonic-daw__transport {
+    padding: 16px;
+  }
+  
+  .mobile-sonic-daw__transport .touch-button {
+    min-width: 60px;
+    min-height: 60px;
+    font-size: 16px;
+  }
+  
+  .mobile-sonic-daw__content {
+    padding: 16px;
+  }
+  
+  .mobile-sonic-daw__track,
+  .mobile-sonic-daw__channel,
+  .mobile-sonic-daw__plugin {
+    padding: 16px;
+  }
+  
+  .mobile-sonic-daw__visualizer {
+    height: 150px;
+  }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) {
+  .mobile-sonic-daw__header {
+    padding: 8px 16px;
+  }
+  
+  .mobile-sonic-daw__title h1 {
+    font-size: 16px;
+  }
+  
+  .mobile-sonic-daw__title p {
+    font-size: 10px;
+  }
+  
+  .mobile-sonic-daw__views {
+    padding: 8px 16px;
+  }
+  
+  .mobile-sonic-daw__views .touch-button {
+    min-height: 40px;
+    font-size: 11px;
+  }
+  
+  .mobile-sonic-daw__transport {
+    padding: 8px 16px;
+  }
+  
+  .mobile-sonic-daw__transport .touch-button {
+    min-width: 50px;
+    min-height: 50px;
+    font-size: 14px;
+  }
+  
+  .mobile-sonic-daw__content {
+    padding: 12px 16px;
+  }
+  
+  .mobile-sonic-daw__track,
+  .mobile-sonic-daw__channel,
+  .mobile-sonic-daw__plugin {
+    padding: 12px;
+  }
+  
+  .mobile-sonic-daw__visualizer {
+    height: 100px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .mobile-sonic-daw {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-sonic-daw * {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .mobile-sonic-daw {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1d26 50%, #0a0a0a 100%);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .mobile-sonic-daw__header,
+  .mobile-sonic-daw__views,
+  .mobile-sonic-daw__transport,
+  .mobile-sonic-daw__time-display,
+  .mobile-sonic-daw__visualizer {
+    display: none;
+  }
+  
+  .mobile-sonic-daw__content {
+    padding: 0;
+  }
+  
+  .mobile-sonic-daw__track,
+  .mobile-sonic-daw__channel,
+  .mobile-sonic-daw__plugin {
+    background: none;
+    border: 1px solid #000000;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+  }
+}

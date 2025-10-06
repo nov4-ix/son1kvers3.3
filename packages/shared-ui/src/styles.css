@@ -1,0 +1,263 @@
+/* Son1kVerse Design System - Global Styles */
+
+/* CSS Variables for Design Tokens */
+:root {
+  /* Colors */
+  --color-carbon: #0A0C10;
+  --color-cyan: #00FFE7;
+  --color-magenta: #B84DFF;
+  --color-accent: #9AF7EE;
+  --color-primary: #00FFE7;
+  --color-secondary: #B84DFF;
+  --color-success: #00FF88;
+  --color-warning: #FFAA00;
+  --color-error: #FF4444;
+  --color-info: #9AF7EE;
+  
+  /* Typography */
+  --font-mono: 'CoinDingDong', 'Press Start 2P', 'Courier New', monospace;
+  --font-sans: 'Inter', 'Roboto', system-ui, sans-serif;
+  --font-display: 'CoinDingDong', 'Press Start 2P', monospace;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Shadows */
+  --shadow-glow-cyan: 0 0 20px rgba(0, 255, 231, 0.5);
+  --shadow-glow-magenta: 0 0 20px rgba(184, 77, 255, 0.5);
+  --shadow-glow-accent: 0 0 20px rgba(154, 247, 238, 0.5);
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+/* Font Face Declarations */
+@font-face {
+  font-family: 'CoinDingDong';
+  src: url('data:font/woff2;base64,') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-carbon);
+  color: var(--color-cyan);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility Classes */
+.son1k-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.son1k-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.son1k-flex {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.son1k-text-mono {
+  font-family: var(--font-mono);
+}
+
+.son1k-text-display {
+  font-family: var(--font-display);
+}
+
+.son1k-glow-cyan {
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.son1k-glow-magenta {
+  box-shadow: var(--shadow-glow-magenta);
+}
+
+.son1k-glow-accent {
+  box-shadow: var(--shadow-glow-accent);
+}
+
+/* Glitch Effects */
+.son1k-glitch {
+  animation: glitch-shift 0.1s infinite steps(2);
+}
+
+@keyframes glitch-shift {
+  0%, 50% { transform: translate(0, 0); }
+  25% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, -1px); }
+}
+
+.son1k-glitch-blink {
+  animation: glitch-blink 2.3s infinite;
+}
+
+@keyframes glitch-blink {
+  0%, 90%, 100% { opacity: 1; }
+  5% { opacity: 0.8; }
+  10% { opacity: 0.3; }
+  15% { opacity: 0.9; }
+  20% { opacity: 0.1; }
+  25% { opacity: 1; }
+  30% { opacity: 0.7; }
+  35% { opacity: 0.2; }
+  40% { opacity: 1; }
+}
+
+/* Button Base Styles */
+.son1k-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 1px solid var(--color-cyan);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.son1k-btn:hover {
+  background: rgba(0, 255, 231, 0.1);
+  box-shadow: var(--shadow-glow-cyan);
+  transform: translateY(-1px);
+}
+
+.son1k-btn:active {
+  transform: translateY(0);
+}
+
+.son1k-btn-primary {
+  background: var(--color-primary);
+  color: var(--color-carbon);
+}
+
+.son1k-btn-primary:hover {
+  background: var(--color-accent);
+  box-shadow: var(--shadow-glow-accent);
+}
+
+.son1k-btn-secondary {
+  border-color: var(--color-magenta);
+  color: var(--color-magenta);
+}
+
+.son1k-btn-secondary:hover {
+  background: rgba(184, 77, 255, 0.1);
+  box-shadow: var(--shadow-glow-magenta);
+}
+
+/* Card Base Styles */
+.son1k-card {
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid var(--color-cyan);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.son1k-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow-accent);
+}
+
+/* Input Base Styles */
+.son1k-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-cyan);
+  border-radius: var(--radius-md);
+  background: rgba(10, 12, 16, 0.8);
+  color: var(--color-cyan);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.son1k-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow-accent);
+}
+
+.son1k-input::placeholder {
+  color: rgba(0, 255, 231, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .son1k-container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .son1k-btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.75rem;
+  }
+  
+  .son1k-card {
+    padding: var(--spacing-md);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .son1k-glitch,
+  .son1k-glitch-blink {
+    animation: none;
+  }
+  
+  .son1k-btn,
+  .son1k-card {
+    transition: none;
+  }
+}
+
+/* Focus Styles */
+.son1k-btn:focus-visible,
+.son1k-input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

@@ -1,0 +1,433 @@
+/* Mobile Ghost Studio Styles - Estilos para Ghost Studio móvil del universo Son1kVerse */
+
+.mobile-ghost-studio {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1d26 50%, #0a0a0a 100%);
+  color: #ffffff;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  overflow: hidden;
+}
+
+/* Header */
+.mobile-ghost-studio__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: rgba(26, 29, 38, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+  z-index: 100;
+}
+
+.mobile-ghost-studio__title {
+  text-align: center;
+  flex: 1;
+}
+
+.mobile-ghost-studio__title h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00d4ff 0%, #ff0080 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mobile-ghost-studio__title p {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: #a0a0a0;
+  opacity: 0.8;
+}
+
+.mobile-ghost-studio__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Tab Navigation */
+.mobile-ghost-studio__tabs {
+  display: flex;
+  padding: 12px 16px;
+  background: rgba(26, 29, 38, 0.8);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  gap: 8px;
+}
+
+.mobile-ghost-studio__tabs .touch-button {
+  flex: 1;
+  min-height: 60px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mobile-ghost-studio__tabs .touch-button--primary {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Main Content */
+.mobile-ghost-studio__content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-ghost-studio__section {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: rgba(26, 29, 38, 0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.mobile-ghost-studio__section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00d4ff;
+  text-align: center;
+}
+
+.mobile-ghost-studio__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-ghost-studio__ai-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-ghost-studio__daw-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-ghost-studio__looper-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Audio Controls */
+.mobile-ghost-studio__audio-controls {
+  padding: 16px;
+  background: rgba(26, 29, 38, 0.9);
+  border-top: 1px solid rgba(0, 212, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.mobile-ghost-studio__transport {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.mobile-ghost-studio__transport .touch-button {
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mobile-ghost-studio__transport .touch-button--primary {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+}
+
+.mobile-ghost-studio__transport .touch-button--secondary {
+  background: linear-gradient(135deg, #ff0080 0%, #cc0066 100%);
+  box-shadow: 0 6px 20px rgba(255, 0, 128, 0.5);
+}
+
+.mobile-ghost-studio__volume-control,
+.mobile-ghost-studio__bpm-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.mobile-ghost-studio__volume-control label,
+.mobile-ghost-studio__bpm-control label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #00d4ff;
+  min-width: 80px;
+}
+
+.mobile-ghost-studio__volume-slider,
+.mobile-ghost-studio__bpm-slider {
+  flex: 1;
+  height: 6px;
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.mobile-ghost-studio__volume-slider::-webkit-slider-thumb,
+.mobile-ghost-studio__bpm-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.4);
+}
+
+.mobile-ghost-studio__volume-slider::-moz-range-thumb,
+.mobile-ghost-studio__bpm-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.4);
+}
+
+/* Visualizer */
+.mobile-ghost-studio__visualizer {
+  height: 200px;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 212, 255, 0.3);
+  overflow: hidden;
+}
+
+.mobile-ghost-studio__canvas {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1d26 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .mobile-ghost-studio__header {
+    padding: 12px;
+  }
+  
+  .mobile-ghost-studio__title h1 {
+    font-size: 18px;
+  }
+  
+  .mobile-ghost-studio__title p {
+    font-size: 11px;
+  }
+  
+  .mobile-ghost-studio__tabs {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+  
+  .mobile-ghost-studio__tabs .touch-button {
+    min-height: 50px;
+    font-size: 11px;
+  }
+  
+  .mobile-ghost-studio__content {
+    padding: 12px;
+  }
+  
+  .mobile-ghost-studio__section {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .mobile-ghost-studio__section h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .mobile-ghost-studio__transport .touch-button {
+    min-width: 60px;
+    min-height: 60px;
+    font-size: 14px;
+  }
+  
+  .mobile-ghost-studio__visualizer {
+    height: 150px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .mobile-ghost-studio__header {
+    padding: 14px;
+  }
+  
+  .mobile-ghost-studio__title h1 {
+    font-size: 19px;
+  }
+  
+  .mobile-ghost-studio__tabs {
+    padding: 10px 14px;
+  }
+  
+  .mobile-ghost-studio__tabs .touch-button {
+    min-height: 55px;
+    font-size: 12px;
+  }
+  
+  .mobile-ghost-studio__content {
+    padding: 14px;
+  }
+  
+  .mobile-ghost-studio__section {
+    padding: 18px;
+  }
+  
+  .mobile-ghost-studio__transport .touch-button {
+    min-width: 70px;
+    min-height: 70px;
+    font-size: 15px;
+  }
+  
+  .mobile-ghost-studio__visualizer {
+    height: 175px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mobile-ghost-studio__header {
+    padding: 16px;
+  }
+  
+  .mobile-ghost-studio__title h1 {
+    font-size: 20px;
+  }
+  
+  .mobile-ghost-studio__tabs {
+    padding: 12px 16px;
+  }
+  
+  .mobile-ghost-studio__tabs .touch-button {
+    min-height: 60px;
+    font-size: 13px;
+  }
+  
+  .mobile-ghost-studio__content {
+    padding: 16px;
+  }
+  
+  .mobile-ghost-studio__section {
+    padding: 20px;
+  }
+  
+  .mobile-ghost-studio__transport .touch-button {
+    min-width: 80px;
+    min-height: 80px;
+    font-size: 16px;
+  }
+  
+  .mobile-ghost-studio__visualizer {
+    height: 200px;
+  }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) {
+  .mobile-ghost-studio__header {
+    padding: 8px 16px;
+  }
+  
+  .mobile-ghost-studio__title h1 {
+    font-size: 16px;
+  }
+  
+  .mobile-ghost-studio__title p {
+    font-size: 10px;
+  }
+  
+  .mobile-ghost-studio__tabs {
+    padding: 8px 16px;
+  }
+  
+  .mobile-ghost-studio__tabs .touch-button {
+    min-height: 40px;
+    font-size: 11px;
+  }
+  
+  .mobile-ghost-studio__content {
+    padding: 12px 16px;
+  }
+  
+  .mobile-ghost-studio__section {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .mobile-ghost-studio__section h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .mobile-ghost-studio__transport .touch-button {
+    min-width: 60px;
+    min-height: 60px;
+    font-size: 14px;
+  }
+  
+  .mobile-ghost-studio__visualizer {
+    height: 120px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .mobile-ghost-studio {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-ghost-studio * {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .mobile-ghost-studio {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1d26 50%, #0a0a0a 100%);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .mobile-ghost-studio__header,
+  .mobile-ghost-studio__tabs,
+  .mobile-ghost-studio__audio-controls,
+  .mobile-ghost-studio__visualizer {
+    display: none;
+  }
+  
+  .mobile-ghost-studio__content {
+    padding: 0;
+  }
+  
+  .mobile-ghost-studio__section {
+    background: none;
+    border: 1px solid #000000;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+  }
+}

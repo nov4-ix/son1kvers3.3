@@ -1,0 +1,553 @@
+/* Mini DAW - Estilos para Ghost Studio */
+
+.mini-daw {
+  background: rgba(10, 12, 16, 0.9);
+  border: 1px solid var(--daw-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.mini-daw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 255, 231, 0.2);
+}
+
+.mini-daw-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--daw-border);
+  text-shadow: 0 0 10px var(--daw-border);
+  margin: 0;
+}
+
+.mini-daw-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--daw-border);
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--daw-border);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.view-btn:hover {
+  background: rgba(0, 255, 231, 0.1);
+  box-shadow: 0 0 10px var(--daw-border);
+  transform: translateY(-1px);
+}
+
+.view-btn.active {
+  background: var(--daw-border);
+  color: var(--daw-bg);
+  box-shadow: 0 0 15px var(--daw-border);
+}
+
+.action-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--daw-border);
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--daw-border);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.action-btn:hover {
+  background: rgba(0, 255, 231, 0.1);
+  box-shadow: 0 0 10px var(--daw-border);
+  transform: translateY(-1px);
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-btn:disabled:hover {
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Transport Controls */
+.mini-transport {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 255, 231, 0.05);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 255, 231, 0.2);
+}
+
+.transport-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.transport-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--daw-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--daw-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.transport-btn:hover {
+  background: rgba(0, 255, 231, 0.1);
+  box-shadow: 0 0 15px var(--daw-border);
+  transform: scale(1.05);
+}
+
+.transport-btn.play-btn.playing {
+  background: var(--daw-border);
+  color: var(--daw-bg);
+  animation: pulse 2s infinite;
+}
+
+.transport-btn.record-btn.recording {
+  background: #FF4444;
+  color: white;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.transport-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.time-display {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--daw-border);
+  text-shadow: 0 0 10px var(--daw-border);
+}
+
+.bpm-display {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--daw-text-dim);
+}
+
+/* Tracks */
+.mini-tracks {
+  margin-bottom: 1.5rem;
+}
+
+.tracks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 255, 231, 0.2);
+}
+
+.tracks-title {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--daw-border);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.tracks-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.empty-tracks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  color: var(--daw-text-dim);
+  border: 2px dashed rgba(0, 255, 231, 0.3);
+  border-radius: 0.5rem;
+}
+
+.empty-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.mini-track {
+  border: 1px solid rgba(0, 255, 231, 0.2);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.mini-track:hover {
+  border-color: var(--daw-border);
+  background: rgba(0, 255, 231, 0.05);
+}
+
+.mini-track.selected {
+  border-color: var(--daw-border);
+  background: rgba(0, 255, 231, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 231, 0.3);
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.track-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.track-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--daw-border);
+}
+
+.track-name {
+  font-weight: 500;
+  color: var(--daw-text);
+  font-size: 0.875rem;
+}
+
+.track-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.track-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--daw-border);
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--daw-border);
+  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.track-btn:hover {
+  background: rgba(0, 255, 231, 0.1);
+}
+
+.track-btn.active {
+  background: var(--daw-border);
+  color: var(--daw-bg);
+}
+
+.track-btn.remove-btn {
+  color: #FF4444;
+  border-color: #FF4444;
+}
+
+.track-btn.remove-btn:hover {
+  background: #FF4444;
+  color: white;
+}
+
+.track-lane {
+  height: 60px;
+  background: rgba(10, 12, 16, 0.5);
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.audio-region {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, var(--daw-border), var(--daw-accent));
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.region-waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-right: 1rem;
+}
+
+.waveform-bar {
+  width: 3px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1px;
+}
+
+.region-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.region-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.region-duration {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.empty-lane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--daw-text-dim);
+  font-style: italic;
+}
+
+.empty-text {
+  font-size: 0.875rem;
+}
+
+.track-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.process-btn {
+  background: linear-gradient(135deg, var(--daw-accent), #9AF7EE);
+  color: var(--daw-bg);
+  border-color: var(--daw-accent);
+}
+
+.process-btn:hover {
+  background: linear-gradient(135deg, #9AF7EE, var(--daw-accent));
+  box-shadow: 0 0 15px var(--daw-accent);
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #FFD93D, #FF9F43);
+  color: var(--daw-bg);
+  border-color: #FFD93D;
+}
+
+.export-btn:hover {
+  background: linear-gradient(135deg, #FF9F43, #FFD93D);
+  box-shadow: 0 0 15px #FFD93D;
+}
+
+/* Track Inspector */
+.track-inspector {
+  background: rgba(0, 255, 231, 0.05);
+  border: 1px solid rgba(0, 255, 231, 0.2);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.inspector-title {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--daw-border);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.inspector-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.property-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.property-label {
+  font-size: 0.875rem;
+  color: var(--daw-text);
+  min-width: 60px;
+}
+
+.property-slider {
+  flex: 1;
+  height: 4px;
+  background: rgba(0, 255, 231, 0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.property-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--daw-border);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 5px var(--daw-border);
+}
+
+.property-value {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--daw-border);
+  min-width: 40px;
+  text-align: center;
+}
+
+.property-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--daw-border);
+  border-radius: 0.25rem;
+  background: rgba(10, 12, 16, 0.8);
+  color: var(--daw-border);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+}
+
+.property-input:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--daw-border);
+}
+
+/* Recording Status */
+.recording-status {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(10, 12, 16, 0.95);
+  border: 2px solid #FF4444;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #FF4444;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #FF4444;
+  animation: pulse-dot 1s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mini-daw-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .mini-daw-actions {
+    justify-content: center;
+  }
+  
+  .mini-transport {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .transport-buttons {
+    justify-content: center;
+  }
+  
+  .track-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .track-controls {
+    justify-content: center;
+  }
+  
+  .track-actions {
+    justify-content: center;
+  }
+  
+  .property-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .property-label {
+    min-width: auto;
+  }
+}

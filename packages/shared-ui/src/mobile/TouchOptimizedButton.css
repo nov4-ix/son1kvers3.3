@@ -1,0 +1,516 @@
+/* Touch Optimized Button Styles - Estilos para botón touch del universo Son1kVerse */
+
+.touch-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  min-height: 44px;
+  min-width: 44px;
+  background: var(--bg-secondary, #1a1d26);
+  color: var(--text-primary, #ffffff);
+  border: 1px solid var(--border-color, #333333);
+}
+
+/* Size Variations */
+.touch-button--sm {
+  padding: 8px 16px;
+  font-size: 12px;
+  min-height: 36px;
+  min-width: 36px;
+}
+
+.touch-button--md {
+  padding: 12px 24px;
+  font-size: 14px;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.touch-button--lg {
+  padding: 16px 32px;
+  font-size: 16px;
+  min-height: 52px;
+  min-width: 52px;
+}
+
+.touch-button--xl {
+  padding: 20px 40px;
+  font-size: 18px;
+  min-height: 60px;
+  min-width: 60px;
+}
+
+/* Variant Variations */
+.touch-button--primary {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  color: #ffffff;
+  border-color: #00d4ff;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.touch-button--secondary {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: #ffffff;
+  border-color: #6c757d;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.touch-button--ghost {
+  background: transparent;
+  color: var(--text-primary, #ffffff);
+  border-color: var(--border-color, #333333);
+  box-shadow: none;
+}
+
+.touch-button--danger {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: #ffffff;
+  border-color: #dc3545;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.touch-button--success {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  color: #ffffff;
+  border-color: #28a745;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.touch-button--warning {
+  background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+  color: #212529;
+  border-color: #ffc107;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+/* State Variations */
+.touch-button--pressed {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.touch-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.touch-button--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.touch-button--long-pressing {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+}
+
+/* Layout Variations */
+.touch-button--full-width {
+  width: 100%;
+}
+
+.touch-button--rounded {
+  border-radius: 50px;
+}
+
+/* Effect Variations */
+.touch-button--glow {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+  animation: glow-pulse 2s infinite;
+}
+
+.touch-button--glitch {
+  animation: glitch-shake 0.2s ease-in-out;
+}
+
+.touch-button--matrix {
+  background: linear-gradient(45deg, #00ff00, #00d4ff, #ff0080);
+  background-size: 400% 400%;
+  animation: matrix-gradient 0.3s ease;
+}
+
+.touch-button--cyberpunk {
+  background: linear-gradient(135deg, #ff0080 0%, #00d4ff 50%, #00ff00 100%);
+  background-size: 200% 200%;
+  animation: cyberpunk-gradient 2s ease infinite;
+  border: 2px solid #00d4ff;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+}
+
+.touch-button--nexus {
+  background: linear-gradient(135deg, #1a1d26 0%, #2d3748 50%, #1a1d26 100%);
+  border: 2px solid #00d4ff;
+  box-shadow: 
+    0 0 20px rgba(0, 212, 255, 0.5),
+    inset 0 0 20px rgba(0, 212, 255, 0.1);
+  animation: nexus-pulse 3s ease infinite;
+}
+
+.touch-button--son1kverse {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1d26 25%, #2d3748 50%, #1a1d26 75%, #0a0a0a 100%);
+  background-size: 400% 400%;
+  border: 2px solid #ff0080;
+  box-shadow: 
+    0 0 25px rgba(255, 0, 128, 0.6),
+    inset 0 0 25px rgba(255, 0, 128, 0.1);
+  animation: son1kverse-flow 4s ease infinite;
+}
+
+/* Icon Variations */
+.touch-button--with-icon {
+  gap: 8px;
+}
+
+.touch-button--icon-left {
+  flex-direction: row;
+}
+
+.touch-button--icon-right {
+  flex-direction: row-reverse;
+}
+
+.touch-button--icon-top {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.touch-button--icon-bottom {
+  flex-direction: column-reverse;
+  gap: 4px;
+}
+
+/* Content */
+.touch-button__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  position: relative;
+  z-index: 2;
+}
+
+.touch-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+}
+
+.touch-button__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Loading State */
+.touch-button__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.touch-button__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.touch-button__loading-text {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+/* Ripple Effect */
+.touch-button__ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.touch-button__ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  animation: ripple-expand 0.6s ease-out;
+}
+
+/* Glitch Effect */
+.touch-button__glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 0, 128, 0.3) 50%, transparent 70%);
+  animation: glitch-sweep 0.2s ease-in-out;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Matrix Effect */
+.touch-button__matrix {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #00ff00, #00d4ff, #ff0080);
+  background-size: 400% 400%;
+  animation: matrix-gradient 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Long Press Indicator */
+.touch-button__long-press-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(0, 212, 255, 0.8);
+  border-radius: inherit;
+  transform: translate(-50%, -50%) scale(1.1);
+  animation: long-press-pulse 0.5s ease infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Animations */
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+  }
+}
+
+@keyframes glitch-shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-2px); }
+  20% { transform: translateX(2px); }
+  30% { transform: translateX(-1px); }
+  40% { transform: translateX(1px); }
+  50% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+  70% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+  90% { transform: translateX(-2px); }
+}
+
+@keyframes matrix-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes cyberpunk-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes nexus-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(0, 212, 255, 0.5),
+      inset 0 0 20px rgba(0, 212, 255, 0.1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 30px rgba(0, 212, 255, 0.8),
+      inset 0 0 30px rgba(0, 212, 255, 0.2);
+  }
+}
+
+@keyframes son1kverse-flow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple-expand {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@keyframes glitch-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes long-press-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hover Effects (Desktop) */
+@media (hover: hover) {
+  .touch-button:hover:not(.touch-button--disabled):not(.touch-button--loading) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+  }
+  
+  .touch-button--primary:hover {
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+  }
+  
+  .touch-button--secondary:hover {
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.5);
+  }
+  
+  .touch-button--danger:hover {
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.5);
+  }
+  
+  .touch-button--success:hover {
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+  }
+  
+  .touch-button--warning:hover {
+    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.5);
+  }
+}
+
+/* Focus Effects */
+.touch-button:focus-visible {
+  outline: 2px solid var(--accent-color, #00d4ff);
+  outline-offset: 2px;
+}
+
+/* Active Effects */
+.touch-button:active:not(.touch-button--disabled):not(.touch-button--loading) {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .touch-button {
+    transition: none;
+  }
+  
+  .touch-button--glow,
+  .touch-button--cyberpunk,
+  .touch-button--nexus,
+  .touch-button--son1kverse {
+    animation: none;
+  }
+  
+  .touch-button__spinner {
+    animation: none;
+  }
+  
+  .touch-button__ripple {
+    animation: none;
+  }
+  
+  .touch-button__glitch {
+    animation: none;
+  }
+  
+  .touch-button__matrix {
+    animation: none;
+  }
+  
+  .touch-button__long-press-indicator {
+    animation: none;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .touch-button {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .touch-button {
+    background: none !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+  }
+  
+  .touch-button__ripple,
+  .touch-button__glitch,
+  .touch-button__matrix,
+  .touch-button__long-press-indicator {
+    display: none !important;
+  }
+}
