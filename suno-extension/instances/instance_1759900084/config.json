@@ -1,0 +1,8 @@
+{
+  "id": "instance_1759900084",
+  "capacity": 1000,
+  "current_users": 0,
+  "status": "active",
+  "created_at": "2025-10-07T23:08:04-06:00",
+  "endpoint": "https://api.suno.com/v1/instance/instance_1759900084"
+}

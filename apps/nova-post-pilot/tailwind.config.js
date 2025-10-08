@@ -4,27 +4,23 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         carbon: '#0A0C10',
         cyan: '#00FFE7',
         magenta: '#B84DFF',
-        accent: '#9AF7EE',
+        'accent-cyan': '#9AF7EE',
       },
-      backdropBlur: {
-        xs: '2px',
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
+        'bounce-slow': 'bounce 2s infinite',
       },
-      keyframes: {
-        glow: {
-          '0%': { boxShadow: '0 0 5px rgba(0, 255, 231, 0.3)' },
-          '100%': { boxShadow: '0 0 20px rgba(0, 255, 231, 0.6)' },
-        },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },

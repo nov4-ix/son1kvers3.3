@@ -1,0 +1,93 @@
+/* The Generator - Son1kVerse Design System */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Son1kVerse Color Palette */
+:root {
+  --carbon: #0A0C10;
+  --cyan: #00FFE7;
+  --magenta: #B84DFF;
+  --accent-cyan: #9AF7EE;
+  --white: #FFFFFF;
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--carbon);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Cyber Grid Background */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 231, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 231, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* Glow Effects */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 255, 231, 0.3);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 15px rgba(184, 77, 255, 0.3);
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Tailwind Extensions */
+.bg-carbon { background-color: var(--carbon); }
+.text-cyan { color: var(--cyan); }
+.text-magenta { color: var(--magenta); }
+.text-accent-cyan { color: var(--accent-cyan); }
+.border-cyan { border-color: var(--cyan); }
+.border-magenta { border-color: var(--magenta); }
+.bg-cyan { background-color: var(--cyan); }
+.bg-magenta { background-color: var(--magenta); }

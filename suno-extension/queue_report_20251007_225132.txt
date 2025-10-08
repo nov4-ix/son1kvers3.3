@@ -1,0 +1,17 @@
+🎯 REPORTE DE COLAS - Tue Oct  7 22:51:32 CST 2025
+==================================
+
+📋 Cola premium:        1 usuarios
+  Detalles:
+    - premium_user (agregado: , posición: 1, espera: 2 min)
+
+📋 Cola standard:        1 usuarios
+  Detalles:
+    - standard_user (agregado: , posición: 1, espera: 4 min)
+
+📋 Cola free:        1 usuarios
+  Detalles:
+    - free_user (agregado: , posición: 1, espera: 6 min)
+
+📋 Cola overflow:        0 usuarios
+

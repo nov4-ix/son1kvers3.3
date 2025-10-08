@@ -1,83 +1,43 @@
 import { create } from 'zustand'
-import { supabase, signInWithEmail, signUpWithEmail, signOut, getCurrentUser, getSession } from '@/lib/supabase'
-import type { User, Session, AuthError } from '@supabase/supabase-js'
-import toast from 'react-hot-toast'
+import { supabase, signIn as supabaseSignIn, signUp as supabaseSignUp, signOut as supabaseSignOut } from '../lib/supabase'
+import type { User } from '@supabase/supabase-js'
 
 interface AuthState {
   user: User | null
-  session: Session | null
   isLoading: boolean
   isAuthenticated: boolean
-  error: string | null
-  
-  // Actions
   signIn: (email: string, password: string) => Promise<void>
   signUp: (email: string, password: string) => Promise<void>
   signOut: () => Promise<void>
   initialize: () => Promise<void>
-  clearError: () => void
 }
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+export const useAuthStore = create<AuthState>((set) => ({
   user: null,
-  session: null,
-  isLoading: false,
+  isLoading: true,
   isAuthenticated: false,
-  error: null,
 
   signIn: async (email: string, password: string) => {
-    set({ isLoading: true, error: null })
-    
+    set({ isLoading: true })
     try {
-      const { user, session, error } = await signInWithEmail(email, password)
-      
-      if (error) {
-        set({ error: error.message })
-        toast.error(error.message)
-        return
-      }
-      
-      set({ 
-        user, 
-        session, 
-        isAuthenticated: !!user,
-        error: null 
-      })
-      
-      toast.success('¡Bienvenido!')
+      const { user } = await supabaseSignIn(email, password)
+      set({ user, isAuthenticated: true })
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Error desconocido'
-      set({ error: errorMessage })
-      toast.error(errorMessage)
+      console.error('Sign in error:', error)
+      throw error
     } finally {
       set({ isLoading: false })
     }
   },
 
   signUp: async (email: string, password: string) => {
-    set({ isLoading: true, error: null })
-    
+    set({ isLoading: true })
     try {
-      const { user, session, error } = await signUpWithEmail(email, password)
-      
-      if (error) {
-        set({ error: error.message })
-        toast.error(error.message)
-        return
-      }
-      
-      set({ 
-        user, 
-        session, 
-        isAuthenticated: !!user,
-        error: null 
-      })
-      
-      toast.success('¡Cuenta creada! Revisa tu email para confirmar.')
+      const { user } = await supabaseSignUp(email, password)
+      set({ user, isAuthenticated: !!user })
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Error desconocido'
-      set({ error: errorMessage })
-      toast.error(errorMessage)
+      console.error('Sign up error:', error)
+      throw error
     } finally {
       set({ isLoading: false })
     }
@@ -85,28 +45,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   signOut: async () => {
     set({ isLoading: true })
-    
     try {
-      const { error } = await signOut()
-      
-      if (error) {
-        set({ error: error.message })
-        toast.error(error.message)
-        return
-      }
-      
-      set({ 
-        user: null, 
-        session: null, 
-        isAuthenticated: false,
-        error: null 
-      })
-      
-      toast.success('Sesión cerrada')
+      await supabaseSignOut()
+      set({ user: null, isAuthenticated: false })
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Error desconocido'
-      set({ error: errorMessage })
-      toast.error(errorMessage)
+      console.error('Sign out error:', error)
+      throw error
     } finally {
       set({ isLoading: false })
     }
@@ -114,28 +58,25 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   initialize: async () => {
     set({ isLoading: true })
-    
     try {
-      const [user, session] = await Promise.all([
-        getCurrentUser(),
-        getSession()
-      ])
-      
-      set({ 
-        user, 
-        session, 
-        isAuthenticated: !!user,
-        error: null 
+      const { data: { session } } = await supabase.auth.getSession()
+      set({
+        user: session?.user ?? null,
+        isAuthenticated: !!session?.user,
+      })
+
+      // Listen to auth changes
+      supabase.auth.onAuthStateChange((_event, session) => {
+        set({
+          user: session?.user ?? null,
+          isAuthenticated: !!session?.user,
+        })
       })
     } catch (error) {
-      console.error('Error initializing auth:', error)
-      set({ error: 'Error al inicializar autenticación' })
+      console.error('Initialize error:', error)
     } finally {
       set({ isLoading: false })
     }
   },
-
-  clearError: () => {
-    set({ error: null })
-  },
 }))
+

@@ -1,0 +1,310 @@
+/* 🕵️ ESTILOS PARA SISTEMA DE USUARIOS INDEPENDIENTES */
+
+/* Límites del usuario */
+.user-limits {
+  background: #0f0f15;
+  border: 1px solid #1e1e2a;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.user-limits h3 {
+  margin: 0 0 12px 0;
+  color: #00ffe7;
+  font-size: 16px;
+}
+
+.limits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.limit-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #12121a;
+  border-radius: 6px;
+  border: 1px solid #1e1e2a;
+}
+
+.limit-label {
+  color: #9AF7EE;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.limit-value {
+  color: #00ffe7;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Información del usuario */
+.user-info {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,255,231,0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #00ffe7;
+  border: 1px solid rgba(0,255,231,0.2);
+}
+
+/* Notificaciones del usuario */
+.user-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #00ffe7;
+  color: #0b0b0f;
+  padding: 12px 16px;
+  border-radius: 8px;
+  z-index: 10000;
+  max-width: 300px;
+  box-shadow: 0 4px 12px rgba(0,255,231,0.3);
+  font-weight: 600;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Estados de límites */
+.limit-item.warning {
+  border-color: #ffa500;
+  background: #15150f;
+}
+
+.limit-item.critical {
+  border-color: #ff6b6b;
+  background: #150f0f;
+}
+
+.limit-item.exceeded {
+  border-color: #ff6b6b;
+  background: #150f0f;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Indicadores de estado del usuario */
+.user-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.user-status.active {
+  background: rgba(0,255,0,0.2);
+  color: #00ff00;
+  border: 1px solid rgba(0,255,0,0.3);
+}
+
+.user-status.warning {
+  background: rgba(255,165,0,0.2);
+  color: #ffa500;
+  border: 1px solid rgba(255,165,0,0.3);
+}
+
+.user-status.critical {
+  background: rgba(255,107,107,0.2);
+  color: #ff6b6b;
+  border: 1px solid rgba(255,107,107,0.3);
+}
+
+/* Dashboard del usuario */
+.user-dashboard {
+  background: #0f0f15;
+  border: 1px solid #1e1e2a;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.user-dashboard h3 {
+  margin: 0 0 12px 0;
+  color: #00ffe7;
+  font-size: 16px;
+}
+
+.user-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 12px;
+  background: #12121a;
+  border-radius: 6px;
+  border: 1px solid #1e1e2a;
+}
+
+.stat-value {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #00ffe7;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #9AF7EE;
+}
+
+/* Configuración del usuario */
+.user-config {
+  background: #0f0f15;
+  border: 1px solid #1e1e2a;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.user-config h3 {
+  margin: 0 0 12px 0;
+  color: #00ffe7;
+  font-size: 16px;
+}
+
+.config-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #1e1e2a;
+}
+
+.config-item:last-child {
+  border-bottom: none;
+}
+
+.config-label {
+  color: #e9e9f1;
+  font-size: 14px;
+}
+
+.config-value {
+  color: #00ffe7;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .limits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .user-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .user-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .user-info {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+}
+
+/* Modo oscuro mejorado */
+@media (prefers-color-scheme: dark) {
+  .user-limits {
+    background: #0a0a0f;
+    border-color: #1a1a2e;
+  }
+  
+  .limit-item {
+    background: #0f0f15;
+    border-color: #1a1a2e;
+  }
+  
+  .user-dashboard {
+    background: #0a0a0f;
+    border-color: #1a1a2e;
+  }
+  
+  .stat-item {
+    background: #0f0f15;
+    border-color: #1a1a2e;
+  }
+  
+  .user-config {
+    background: #0a0a0f;
+    border-color: #1a1a2e;
+  }
+}
+
+/* Animaciones suaves */
+.user-limits,
+.user-dashboard,
+.user-config {
+  transition: all 0.3s ease;
+}
+
+.user-limits:hover,
+.user-dashboard:hover,
+.user-config:hover {
+  border-color: #00ffe7;
+  box-shadow: 0 0 10px rgba(0,255,231,0.1);
+}
+
+/* Estados de carga */
+.user-system-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.user-system-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #00ffe7;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

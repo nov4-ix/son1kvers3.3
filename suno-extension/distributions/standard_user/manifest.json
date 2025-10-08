@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extName__",
+  "version": "2.6.0",
+  "default_locale": "en",
+  "description": "__MSG_extDescription__",
+  "permissions": ["contextMenus", "storage"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Suno Music Generator",
+    "default_icon": {
+      "16": "images/16.png",
+      "48": "images/48.png",
+      "128": "images/128.png"
+    }
+  },
+  "icons": {
+    "16": "images/16.png",
+    "48": "images/48.png",
+    "128": "images/128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

@@ -1,44 +1,32 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Dashboard } from './pages/Dashboard'
+import { Login } from './pages/Login'
+import { Signup } from './pages/Signup'
+import { NotFound } from './pages/NotFound'
+import { ProtectedRoute } from './components/ProtectedRoute'
 import { Toaster } from 'react-hot-toast'
-import { ProtectedRoute } from '@/components/ProtectedRoute'
-import { Layout } from '@/components/layout/Layout'
-import { Login } from '@/pages/Login'
-import { Signup } from '@/pages/Signup'
-import { Dashboard } from '@/pages/Dashboard'
-import { NotFound } from '@/pages/NotFound'
 
-export function App() {
+function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-carbon">
+    <Router>
+      <div className="min-h-screen bg-[#0A0C10]">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
               <ProtectedRoute>
-                <Layout>
-                  <Dashboard />
-                </Layout>
+                <Dashboard />
               </ProtectedRoute>
-            } 
+            }
           />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Toaster 
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: '#1a1d26',
-              color: '#ffffff',
-              border: '1px solid rgba(0, 255, 231, 0.3)',
-            },
-          }}
-        />
+        <Toaster position="top-right" />
       </div>
-    </BrowserRouter>
+    </Router>
   )
 }
+
+export default App

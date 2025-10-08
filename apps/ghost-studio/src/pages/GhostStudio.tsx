@@ -1,48 +1,22 @@
+// src/pages/GhostStudio.tsx
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Ghost, Settings } from 'lucide-react'
 import { Button } from '../components/ui/Button'
 import { AudioUploader } from '../components/upload/AudioUploader'
 import { MiniDAW } from '../components/daw/MiniDAW'
-import { AudioAnalyzer } from '../components/analysis/AudioAnalyzer'
-import { KnobsPanel } from '../components/KnobsPanel'
-import { PromptBuilder } from '../components/prompt/PromptBuilder'
-import { GenerationProgress } from '../components/generation/GenerationProgress'
-import { ABPlayer } from '../components/results/ABPlayer'
-import { useSunoCover } from '../hooks/useSunoCover'
+import { CoverGenerator } from '../components/CoverGenerator'
 import type { AudioFile } from '../types/audio'
-import type { AudioAnalysis } from '../types/audio'
-import type { KnobSettings } from '../types/suno'
 
 export function GhostStudio() {
   const [step, setStep] = useState<'upload' | 'analyze' | 'customize' | 'generate' | 'result'>('upload')
   const [audioFile, setAudioFile] = useState<AudioFile | null>(null)
-  const [analysis, setAnalysis] = useState<AudioAnalysis | null>(null)
-  const [knobs, setKnobs] = useState<KnobSettings>({
-    expressivity: 50,
-    rareza: 50,
-    garage: 30,
-    trash: 30
-  })
-  const [userDescription, setUserDescription] = useState('')
 
-  const { generateCover, isGenerating, status, error } = useSunoCover()
-
-  const handleGenerate = async () => {
-    if (!audioFile || !analysis) return
-    
-    try {
-      await generateCover({
-        audioFile,
-        analysis,
-        knobs,
-        userDescription
-      })
-      setStep('generate')
-    } catch (err) {
-      console.error('Generation failed:', err)
-    }
+  const handleFileSelect = (file: AudioFile) => {
+    setAudioFile(file)
+    setStep('analyze')
   }
+
   return (
     <div className="min-h-screen bg-carbon relative overflow-hidden">
       {/* Background Effects */}
@@ -94,19 +68,18 @@ export function GhostStudio() {
                 <motion.div 
                   className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
                     step === stepName ? 'bg-gradient-to-r from-cyan to-magenta text-carbon shadow-[0_0_20px_rgba(0,255,231,0.5)]' : 
-                    ['upload', 'analyze', 'customize', 'generate', 'result'].indexOf(step) > index ? 'bg-green-500 text-white shadow-[0_0_15px_rgba(34,197,94,0.3)]' : 
-                    'bg-gray-700 text-gray-400 border border-gray-600'
+                    ['upload', 'analyze', 'customize', 'generate', 'result'].indexOf(step) > index ? 'bg-green-500 text-white' : 
+                    'bg-white/10 text-white/50'
                   }`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {index + 1}
                 </motion.div>
-                <div className="ml-2 text-sm font-medium text-white/70">
-                  {['Upload', 'Analyze', 'Customize', 'Generate', 'Result'][index]}
-                </div>
                 {index < 4 && (
-                  <div className="w-12 h-0.5 bg-gray-600 mx-4" />
+                  <div className={`w-16 h-1 mx-2 transition-all duration-300 ${
+                    ['upload', 'analyze', 'customize', 'generate', 'result'].indexOf(step) > index ? 'bg-green-500' : 'bg-white/10'
+                  }`} />
                 )}
               </div>
             ))}
@@ -115,61 +88,86 @@ export function GhostStudio() {
       </div>
 
       {/* Main Content */}
-      <main className="relative z-10 px-6 pb-6">
+      <div className="relative z-10 px-6">
         <div className="son1k-container">
-          <motion.div 
-            className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
+          <div className="son1k-card p-8">
+            <h2 className="text-xl font-semibold text-white mb-4">
+              Step: {step}
+            </h2>
+            
             {step === 'upload' && (
-              <div className="space-y-8">
-                <AudioUploader onFileSelect={setAudioFile} />
-                <MiniDAW onRecordingComplete={setAudioFile} />
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Subir Archivo de Audio</h3>
+                  <AudioUploader onFileSelect={handleFileSelect} />
+                </div>
+                
+                <div className="border-t border-white/10 pt-6">
+                  <h3 className="text-lg font-semibold text-white mb-3">Mini DAW & Looper</h3>
+                  <MiniDAW onRecordingComplete={handleFileSelect} />
+                </div>
               </div>
             )}
-
+            
             {step === 'analyze' && audioFile && (
-              <AudioAnalyzer 
-                audioFile={audioFile} 
-                onComplete={(analysis) => {
-                  setAnalysis(analysis);
-                  setStep('customize');
-                }} 
-              />
-            )}
-
-            {step === 'customize' && analysis && (
-              <div className="space-y-8">
-                <KnobsPanel values={knobs} onChange={setKnobs} />
-                <PromptBuilder 
-                  analysis={analysis}
-                  knobs={knobs}
-                  userDescription={userDescription}
-                  onDescriptionChange={setUserDescription}
-                  onGenerate={handleGenerate}
-                />
+              <div>
+                <p className="text-white/70 mb-6">
+                  Archivo seleccionado: {audioFile.file.name}
+                </p>
+                <Button onClick={() => setStep('customize')}>
+                  Continuar al Análisis
+                </Button>
               </div>
             )}
-
+            
+            {step === 'customize' && (
+              <div>
+                <p className="text-white/70 mb-6">
+                  Personaliza los parámetros creativos.
+                </p>
+                <Button onClick={() => setStep('generate')}>
+                  Generar Música
+                </Button>
+              </div>
+            )}
+            
             {step === 'generate' && (
-              <GenerationProgress 
-                status={status}
-                error={error}
-                onComplete={() => setStep('result')}
-              />
+              <div>
+                <p className="text-white/70 mb-6">
+                  Generando música con IA...
+                </p>
+                <CoverGenerator audioFile={audioFile} />
+                <Button onClick={() => setStep('result')}>
+                  Ver Resultado
+                </Button>
+              </div>
             )}
-
-            {step === 'result' && status?.audioUrl && (
-              <ABPlayer 
-                originalAudio={audioFile}
-                generatedAudio={status}
-              />
+            
+            {step === 'result' && (
+              <div>
+                <p className="text-white/70 mb-6">
+                  ¡Música generada exitosamente!
+                </p>
+                <Button onClick={() => setStep('upload')}>
+                  Nuevo Proyecto
+                </Button>
+              </div>
             )}
-          </motion.div>
+            
+            <div className="flex space-x-4 mt-6">
+              {['upload', 'analyze', 'customize', 'generate', 'result'].map((stepName) => (
+                <Button
+                  key={stepName}
+                  variant={step === stepName ? 'primary' : 'ghost'}
+                  onClick={() => setStep(stepName as any)}
+                >
+                  {stepName.charAt(0).toUpperCase() + stepName.slice(1)}
+                </Button>
+              ))}
+            </div>
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

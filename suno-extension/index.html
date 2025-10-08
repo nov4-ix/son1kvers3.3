@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <title>Son1kVerse AI Music Engine</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+  <main class="container">
+    <h1>Son1kVerse AI Music Engine</h1>
+    
+    <!-- ⚖️ Disclaimer Legal -->
+    <div id="legalDisclaimer" class="legal-disclaimer" style="display: none;">
+      <div class="disclaimer-content">
+        <h3>⚖️ Disclaimer Legal - Derechos de Autor</h3>
+        <p>Las pistas generadas por Son1kVerse AI Music Engine pueden estar sujetas a derechos de autor. El usuario es completamente responsable del uso legal de las pistas generadas.</p>
+        <p>Son1kVerse no se hace responsable del uso indebido de las pistas generadas por el sistema.</p>
+        <p>Al usar este sistema, el usuario acepta estos términos.</p>
+        <div class="disclaimer-actions">
+          <button id="acceptDisclaimer" class="btn-accept">✅ Aceptar</button>
+          <button id="rejectDisclaimer" class="btn-reject">❌ Rechazar</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="row">
+        <h2>Configuración</h2>
+        <button id="saveData" class="ghost">💾 Guardar</button>
+      </div>
+      
+      <label>Token (opcional - ya incluido por defecto)</label>
+      <input id="passport" type="password" placeholder="Dejar vacío para usar token por defecto"/>
+      <div id="tokenStatus" class="token-status">
+        <span id="tokenIndicator" class="token-indicator">🔍</span>
+        <span id="tokenMessage">Token no verificado</span>
+        <button id="addBackupToken" class="ghost small">➕ Agregar Token</button>
+      </div>
+      
+      <div id="healthStatus" class="health-status">
+        🔍 Monitoreo iniciando...
+      </div>
+      
+      <label>Título <span class="required">*</span></label>
+      <input id="title" placeholder="Mi Canción" required/>
+      
+      <label>Estilo <span class="required">*</span></label>
+      <input id="style" placeholder="rock, pop, electronic, etc." required/>
+      
+      <label>Duración (segundos) - BLOQUEADO</label>
+      <input id="duration" type="number" value="180" min="180" max="180" readonly disabled placeholder="180"/>
+      
+      <label>Letra <span class="required">*</span></label>
+      <textarea id="lyrics" rows="6" placeholder="Escribe la letra de tu canción aquí..." required></textarea>
+      
+      <label>
+        <input type="checkbox" id="instrumental" /> 
+        Solo instrumental (sin voces)
+      </label>
+      
+      <div class="info-box">
+        <h3>📋 Campos Requeridos:</h3>
+        <ul>
+          <li><strong>Título:</strong> Nombre de tu canción</li>
+          <li><strong>Estilo:</strong> Género musical (rock, pop, electronic, etc.)</li>
+          <li><strong>Letra:</strong> Texto de la canción</li>
+        </ul>
+        <p><strong>Opcionales:</strong> Token, Duración, Instrumental</p>
+      </div>
+    </section>
+    
+    <section class="card">
+      <div class="row">
+        <h2>Payload</h2>
+        <button id="refreshPayload" class="ghost">Rellenar</button>
+      </div>
+      <textarea id="payload" rows="10"></textarea>
+    </section>
+    
+    <section class="actions">
+      <button id="generate">Generar</button>
+      <button id="checkToken" class="ghost">🔍 Verificar Token</button>
+      <button id="loadData" class="ghost">📁 Cargar</button>
+      <button id="refreshExtension" class="ghost">🔄 Recargar</button>
+      <span id="status"></span>
+    </section>
+    
+    <section class="card">
+      <div class="row">
+        <h2>Resultado</h2>
+        <button id="clearResult" class="ghost">Limpiar</button>
+      </div>
+      <pre id="result">Sin resultados</pre>
+      <div id="error" class="error"></div>
+    </section>
+  </main>
+  <script src="index.js"></script>
+</body>
+</html>

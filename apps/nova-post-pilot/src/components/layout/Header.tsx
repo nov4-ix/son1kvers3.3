@@ -1,49 +1,25 @@
-import React from 'react'
-import { motion } from 'framer-motion'
 import { Menu } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
 
 interface HeaderProps {
   title?: string
-  actions?: React.ReactNode
+  onMenuClick: () => void
 }
 
-export function Header({ title = 'Dashboard', actions }: HeaderProps) {
+export function Header({ title = 'Dashboard', onMenuClick }: HeaderProps) {
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="glass border-b border-white/10 px-6 py-4"
-    >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          {/* Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="lg:hidden p-2"
+    <header className="sticky top-0 z-30 bg-carbon/80 backdrop-blur-xl border-b border-white/10">
+      <div className="flex items-center justify-between p-4 md:p-6">
+        <div className="flex items-center gap-4">
+          <button
+            onClick={onMenuClick}
+            className="lg:hidden text-white/60 hover:text-white transition-colors"
           >
-            <Menu size={20} />
-          </Button>
-          
-          <div>
-            <h1 className="text-2xl font-bold text-white">
-              {title}
-            </h1>
-          </div>
+            <Menu className="w-6 h-6" />
+          </button>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">{title}</h2>
         </div>
-        
-        {actions && (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {actions}
-          </motion.div>
-        )}
       </div>
-    </motion.header>
+    </header>
   )
 }
+

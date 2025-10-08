@@ -1,42 +1,28 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { Sidebar } from './Sidebar'
 import { Header } from './Header'
-import { cn } from '@/lib/utils'
 
 interface LayoutProps {
   children: React.ReactNode
+  title?: string
 }
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, title }: LayoutProps) {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-carbon">
-      <div className="flex">
-        {/* Sidebar */}
-        <motion.div
-          initial={{ x: -280 }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.3 }}
-          className="hidden lg:block"
-        >
-          <Sidebar />
-        </motion.div>
-        
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1 overflow-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="h-full"
-            >
-              {children}
-            </motion.div>
-          </main>
-        </div>
+      {/* Sidebar */}
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+      {/* Main Content */}
+      <div className="lg:pl-64">
+        <Header title={title} onMenuClick={() => setSidebarOpen(true)} />
+        <main className="p-4 md:p-8">
+          {children}
+        </main>
       </div>
     </div>
   )
 }
+

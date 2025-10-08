@@ -1,0 +1,314 @@
+body {
+  background: #0b0b0f;
+  color: #e9e9f1;
+  font-family: Inter, system-ui;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.card {
+  background: #12121a;
+  border: 1px solid #1e1e2a;
+  border-radius: 14px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.required {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.info-box {
+  background: #0f0f15;
+  border: 1px solid #1e1e2a;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 16px;
+}
+
+.info-box h3 {
+  margin: 0 0 8px 0;
+  color: #00ffe7;
+  font-size: 14px;
+}
+
+.info-box ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.info-box li {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.info-box p {
+  margin: 8px 0 0 0;
+  font-size: 13px;
+  color: #9AF7EE;
+}
+
+.token-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px;
+  background: #0f0f15;
+  border: 1px solid #1e1e2a;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.token-indicator {
+  font-size: 16px;
+}
+
+.token-status.valid {
+  border-color: #00ff00;
+  background: #0f150f;
+}
+
+.token-status.invalid {
+  border-color: #ff6b6b;
+  background: #150f0f;
+}
+
+.token-status.checking {
+  border-color: #ffa500;
+  background: #15150f;
+}
+
+.health-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px;
+  background: #0f0f15;
+  border: 1px solid #1e1e2a;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.health-status.healthy {
+  border-color: #00ff00;
+  background: #0f150f;
+}
+
+.health-status.warning {
+  border-color: #ffa500;
+  background: #15150f;
+}
+
+.health-status.critical {
+  border-color: #ff6b6b;
+  background: #150f0f;
+}
+
+.health-status.recovered {
+  border-color: #00ff00;
+  background: #0f150f;
+}
+
+input, textarea {
+  width: 100%;
+  background: #0f0f15;
+  border: 1px solid #1e1e2a;
+  border-radius: 8px;
+  padding: 12px;
+  color: #e9e9f1;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+  accent-color: #00ffe7;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #666;
+  opacity: 0.7;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #00ffe7;
+}
+
+button {
+  background: #00ffe7;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #0b0b0f;
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid #1e1e2a;
+  color: #e9e9f1;
+}
+
+button.ghost.small {
+  padding: 4px 8px;
+  font-size: 11px;
+  margin-left: auto;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+#status {
+  color: #00ffe7;
+  font-weight: 600;
+}
+
+pre {
+  background: #0f0f15;
+  border: 1px solid #1e1e2a;
+  border-radius: 10px;
+  color: #d7fef9;
+  padding: 10px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* ⚖️ Estilos para Disclaimer Legal */
+.legal-disclaimer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.disclaimer-content {
+  background: #0f0f15;
+  border: 2px solid #00ffe7;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  margin: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 231, 0.3);
+}
+
+.disclaimer-content h3 {
+  color: #00ffe7;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.disclaimer-content p {
+  color: #e9e9f1;
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+.disclaimer-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-accept {
+  background: #00ff00;
+  color: #0b0b0f;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-accept:hover {
+  background: #00cc00;
+  transform: translateY(-2px);
+}
+
+.btn-reject {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-reject:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+}
+
+/* 🔒 Indicador de configuración bloqueada */
+.config-locked {
+  position: relative;
+}
+
+.config-locked::before {
+  content: "🔒";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 16px;
+  color: #ff6b6b;
+}
+
+.config-locked input,
+.config-locked textarea {
+  background: #1a1a2e !important;
+  border-color: #ff6b6b !important;
+  color: #666 !important;
+  cursor: not-allowed;
+}

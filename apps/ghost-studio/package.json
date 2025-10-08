@@ -14,8 +14,9 @@
     "vercel-build": "npm run build:vercel"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
     "@supabase/storage-js": "^2.5.5",
+    "@supabase/supabase-js": "^2.39.0",
+    "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.6.5",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.16",

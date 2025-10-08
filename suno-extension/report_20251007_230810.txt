@@ -1,0 +1,36 @@
+🎵 REPORTE DE USUARIOS - Tue Oct  7 23:08:10 CST 2025
+==================================
+
+📈 Estadísticas Generales:
+  Total usuarios:       11
+  Uso diario total: 660
+  Límite diario global: 50000
+  Límite máximo usuarios: 1000
+
+👥 Lista de Usuarios:
+ID | Token | Límite Diario | Límite Mensual | Concurrente | Fecha
+---|-------|---------------|----------------|-------------|------
+premium_user | TKMTA0Mzk3... | 100 | 2000 | 5 | Tue Oct  7 22:49:30 CST 2025
+standard_user | TKMTA0Mzk3... | 50 | 1000 | 3 | Tue Oct  7 22:49:32 CST 2025
+free_user | TKMTA0Mzk3... | 25 | 500 | 2 | Tue Oct  7 22:49:33 CST 2025
+test_user_001 | token_001... | 50 | 1000 | 3 | Tue Oct  7 22:51:35 CST 2025
+test_user_002 | token_002... | 75 | 1500 | 4 | Tue Oct  7 22:51:36 CST 2025
+test_user_003 | token_003... | 100 | 2000 | 5 | Tue Oct  7 22:51:37 CST 2025
+test_user_004 | token_004... | 25 | 500 | 2 | Tue Oct  7 22:51:38 CST 2025
+test_user_005 | token_005... | 60 | 1200 | 3 | Tue Oct  7 22:51:39 CST 2025
+premium_user | TKMTA0Mzk3... | 100 | 2000 | 5 | Tue Oct  7 23:07:14 CST 2025
+standard_user | TKMTA0Mzk3... | 50 | 1000 | 3 | Tue Oct  7 23:07:15 CST 2025
+free_user | TKMTA0Mzk3... | 25 | 500 | 2 | Tue Oct  7 23:07:17 CST 2025
+
+🔍 Estado de Instalaciones:
+  ✅ premium_user - Instalación completa
+  ✅ standard_user - Instalación completa
+  ✅ free_user - Instalación completa
+  ✅ test_user_001 - Instalación completa
+  ✅ test_user_002 - Instalación completa
+  ✅ test_user_003 - Instalación completa
+  ✅ test_user_004 - Instalación completa
+  ✅ test_user_005 - Instalación completa
+  ✅ premium_user - Instalación completa
+  ✅ standard_user - Instalación completa
+  ✅ free_user - Instalación completa

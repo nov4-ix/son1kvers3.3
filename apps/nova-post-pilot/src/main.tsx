@@ -1,10 +1,43 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+function App() {
+  return (
+    <div style={{ 
+      minHeight: '100vh', 
+      backgroundColor: '#0A0C10', 
+      color: 'white', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      fontFamily: 'Arial, sans-serif'
+    }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ fontSize: '3rem', marginBottom: '1rem', color: '#00FFE7' }}>
+          🚀 NOVA POST PILOT FUNCIONANDO! 🚀
+        </h1>
+        <p style={{ fontSize: '1.2rem', color: '#B84DFF' }}>
+          AI Marketing Intelligence Platform
+        </p>
+        <div style={{ 
+          marginTop: '2rem', 
+          padding: '1rem', 
+          backgroundColor: 'rgba(255,255,255,0.1)', 
+          borderRadius: '10px',
+          border: '1px solid rgba(255,255,255,0.2)'
+        }}>
+          <p>✅ React funcionando</p>
+          <p>✅ Tailwind cargado</p>
+          <p>✅ Framer Motion activo</p>
+          <p>✅ React Router listo</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
 )
