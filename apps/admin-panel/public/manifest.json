@@ -1,0 +1,33 @@
+{
+  "name": "SON1KVERS3 Admin Panel",
+  "short_name": "SON1K Admin",
+  "description": "Panel administrativo para el ecosistema SON1KVERS3",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0C10",
+  "theme_color": "#00FFE7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/son1kvers3-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["productivity", "utilities", "business"],
+  "lang": "es",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

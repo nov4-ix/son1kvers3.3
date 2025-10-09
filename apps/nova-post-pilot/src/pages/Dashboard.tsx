@@ -10,10 +10,12 @@ import {
   LogOut,
   TrendingUp,
   Users,
-  Clock
+  Clock,
+  Music
 } from 'lucide-react'
 import { useAuthStore } from '../store/authStore'
 import { useNavigate } from 'react-router-dom'
+import { MusicGenerator } from '../components/MusicGenerator'
 
 export function Dashboard() {
   const navigate = useNavigate()
@@ -105,6 +107,11 @@ export function Dashboard() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Music Generator */}
+        <div className="mb-8">
+          <MusicGenerator />
         </div>
 
         {/* Main Content */}

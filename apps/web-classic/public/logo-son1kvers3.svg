@@ -1,0 +1,70 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Triángulo exterior con gradiente -->
+  <defs>
+    <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFE7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B84DFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="eyeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFE7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9AF7EE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B84DFF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Triángulo exterior -->
+  <polygon
+    points="50,8 88,82 12,82"
+    fill="none"
+    stroke="url(#triangleGradient)"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+  
+  <!-- Ojo central con gradiente -->
+  <circle
+    cx="50"
+    cy="50"
+    r="14"
+    fill="none"
+    stroke="url(#eyeGradient)"
+    stroke-width="2"
+  />
+  
+  <!-- Pupila del ojo -->
+  <circle
+    cx="50"
+    cy="50"
+    r="5"
+    fill="url(#eyeGradient)"
+  />
+  
+  <!-- Líneas internas del triángulo -->
+  <line
+    x1="50"
+    y1="18"
+    x2="50"
+    y2="38"
+    stroke="url(#eyeGradient)"
+    stroke-width="1.5"
+    opacity="0.7"
+    stroke-linecap="round"
+  />
+  <line
+    x1="50"
+    y1="62"
+    x2="50"
+    y2="82"
+    stroke="url(#eyeGradient)"
+    stroke-width="1.5"
+    opacity="0.7"
+    stroke-linecap="round"
+  />
+  
+  <!-- Marcas decorativas en los lados -->
+  <circle cx="25" cy="25" r="1" fill="url(#eyeGradient)" opacity="0.6"/>
+  <circle cx="75" cy="25" r="1" fill="url(#eyeGradient)" opacity="0.6"/>
+  <circle cx="25" cy="75" r="1" fill="url(#eyeGradient)" opacity="0.6"/>
+  <circle cx="75" cy="75" r="1" fill="url(#eyeGradient)" opacity="0.6"/>
+</svg>

@@ -1,4 +1,4 @@
-# 🎵 Suno Music Generator - Chrome Extension
+# 🎵 Son1kVerse AI Music Engine - Chrome Extension
 
 ## 📋 **DESCRIPCIÓN**
 
@@ -6,40 +6,40 @@ Extensión de Chrome que permite generar música con IA usando la API de Suno. I
 
 ---
 
-## 🚀 **INSTALACIÓN**
+## 🚀 **INSTALACIÓN RÁPIDA**
 
-### **1. Cargar en Chrome:**
+### **1. Instalar en Chrome:**
 
 1. Abre Chrome y ve a `chrome://extensions/`
 2. Activa "Modo de desarrollador" (Developer mode)
-3. Click en "Cargar extensión sin empaquetar" (Load unpacked)
+3. Haz clic en "Cargar extensión sin empaquetar" (Load unpacked)
 4. Selecciona la carpeta `suno-extension`
 5. ¡La extensión estará instalada!
 
 ### **2. Verificar instalación:**
 
-- Deberías ver el icono de la extensión en la barra de herramientas
-- Click derecho en cualquier texto debería mostrar "IA: generar música con el texto seleccionado"
+- Deberías ver el ícono de la extensión en la barra de herramientas
+- Haz clic derecho en cualquier texto debería mostrar "IA: generar música con el texto seleccionado"
 
 ---
 
 ## 🎯 **CÓMO USAR**
 
-### **Método 1: Desde el icono**
-1. Click en el icono de la extensión
+### **Método 1: Desde el ícono**
+1. Haz clic en el ícono de la extensión
 2. Se abrirá una nueva pestaña con la interfaz
 3. Completa los campos:
    - **Título:** Nombre de la canción
    - **Estilo:** Género musical (ej: "rock", "pop", "electronic")
    - **Letra:** Texto de la canción
-4. Click en "Generar"
+4. Haz clic en "Generar"
 
 ### **Método 2: Desde texto seleccionado**
 1. Selecciona texto en cualquier página web
-2. Click derecho → "IA: generar música con el texto seleccionado"
+2. Haz clic derecho → "IA: generar música con el texto seleccionado"
 3. Se abrirá la interfaz con el texto ya cargado en "Letra"
 4. Completa título y estilo
-5. Click en "Generar"
+5. Haz clic en "Generar"
 
 ---
 
@@ -70,129 +70,44 @@ suno-extension/
 ├── index.css               # Estilos
 ├── _locales/
 │   └── en/
-│       └── messages.json   # Textos de la extensión
+│       └── messages.json    # Textos localizados
 └── images/
-    ├── 16.png              # Icono 16x16
-    ├── 48.png              # Icono 48x48
-    └── 128.png             # Icono 128x128
+    ├── 16.png              # Ícono pequeño
+    ├── 48.png              # Ícono mediano
+    └── 128.png             # Ícono grande
 ```
 
 ---
 
-## 🔧 **FUNCIONALIDADES**
+## 🔧 **SOLUCIÓN DE PROBLEMAS**
 
-### **✅ Implementado:**
-- ✅ Context menu para texto seleccionado
-- ✅ Interfaz de usuario completa
-- ✅ Token de autenticación preconfigurado
-- ✅ Generación de música con Suno API
-- ✅ Almacenamiento local de resultados
-- ✅ Manejo de errores
-- ✅ Timeout de 60 segundos
-- ✅ Payload automático con metadatos
+### **La extensión no aparece**
+- Verifica que todos los archivos están presentes
+- Revisa la consola de Chrome para errores
+- Recarga la extensión desde chrome://extensions/
 
-### **🎨 UI Features:**
-- ✅ Diseño dark theme
-- ✅ Glassmorphism effects
-- ✅ Responsive design
-- ✅ Loading states
-- ✅ Error handling
-- ✅ Result display
+### **Error de token**
+- Verifica que el token es válido
+- Usa "🔍 Verificar Token" para diagnosticar
+- Agrega token personalizado si es necesario
+
+### **La música no se genera**
+- Verifica conexión a internet
+- Revisa el estado de salud de la API
+- Intenta con un token diferente
 
 ---
 
-## 📊 **PAYLOAD EJEMPLO**
+## ⚖️ **DISCLAIMER LEGAL**
 
-```json
-{
-  "title": "Mi Canción",
-  "style": "rock",
-  "lyrics": "Esta es la letra de mi canción...",
-  "prompt": "Style: rock\n\nLyrics:\nEsta es la letra de mi canción...",
-  "meta": {
-    "source": "chrome-extension",
-    "ts": 1694123456789
-  }
-}
-```
+Las pistas generadas por Son1kVerse AI Music Engine pueden estar sujetas a derechos de autor. El usuario es completamente responsable del uso legal de las pistas generadas.
 
----
+Son1kVerse no se hace responsable del uso indebido de las pistas generadas por el sistema.
 
-## 🐛 **TROUBLESHOOTING**
-
-### **La extensión no aparece:**
-1. Verifica que esté habilitada en `chrome://extensions/`
-2. Revisa que no haya errores en la consola
-3. Recarga la extensión
-
-### **Error de API:**
-1. Verifica que el token sea válido
-2. Revisa la consola para errores específicos
-3. Verifica la conexión a internet
-
-### **No funciona el context menu:**
-1. Verifica permisos en `chrome://extensions/`
-2. Recarga la extensión
-3. Reinicia Chrome
-
----
-
-## 🔒 **PERMISOS**
-
-La extensión requiere:
-- **`contextMenus`** - Para el menú contextual
-- **`storage`** - Para guardar resultados localmente
-
----
-
-## 📝 **LOGS Y DEBUG**
-
-### **Ver logs:**
-1. Ve a `chrome://extensions/`
-2. Click en "Detalles" de la extensión
-3. Click en "Inspeccionar vistas: background page"
-4. Revisa la consola para logs
-
-### **Debug del frontend:**
-1. Abre la pestaña de la extensión
-2. F12 para abrir DevTools
-3. Revisa la consola para errores
-
----
-
-## 🚀 **PRÓXIMAS MEJORAS**
-
-- [ ] Descarga directa de audio
-- [ ] Historial de generaciones
-- [ ] Múltiples estilos predefinidos
-- [ ] Integración con Ghost Studio
-- [ ] Notificaciones de progreso
-
----
-
-## 📞 **SOPORTE**
-
-Si tienes problemas:
-1. Revisa la consola de Chrome
-2. Verifica que el token sea válido
-3. Comprueba la conexión a internet
-4. Recarga la extensión
+Al usar este sistema, el usuario acepta estos términos.
 
 ---
 
 ## 🎉 **¡LISTO PARA USAR!**
 
-**La extensión está completamente funcional con:**
-- ✅ Token de autenticación incluido
-- ✅ Interfaz de usuario completa
-- ✅ Context menu funcionando
-- ✅ API de Suno integrada
-- ✅ Manejo de errores
-- ✅ Almacenamiento local
-
-**¡A generar música! 🎵✨**
-
----
-
-**Creado por Son1kVerse**  
-**Powered by Suno AI**
+La extensión está completamente funcional y lista para generar música con IA. ¡Disfruta creando música!

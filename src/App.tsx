@@ -12,6 +12,7 @@ const Signup = lazy(() => import('@/pages/Signup'))
 const Dashboard = lazy(() => import('@/pages/Dashboard'))
 const Analytics = lazy(() => import('@/pages/Analytics'))
 const Billing = lazy(() => import('@/pages/Billing'))
+const SunoGenerator = lazy(() => import('@/pages/SunoGenerator'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 export function App() {
@@ -24,6 +25,9 @@ export function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            
+            {/* Suno Generator */}
+            <Route path="/suno" element={<SunoGenerator />} />
             
             {/* Protected Routes */}
             <Route
