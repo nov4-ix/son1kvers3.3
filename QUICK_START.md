@@ -1,381 +1,235 @@
-# ⚡ QUICK START - Nova Post Pilot + Pixel
+# ⚡ QUICK START - Sistema Comunitario Son1kVers3
 
-## 🎯 **EN 5 MINUTOS**
+**Tiempo estimado:** 15-20 minutos  
+**Nivel:** Intermedio  
 
-### **1. Nova Post Pilot (YA ESTÁ LIVE)**
+---
 
-```bash
-# Visitar URL de producción:
-https://nova-post-pilot-7qmhfuzi9-son1kvers3s-projects-c3cdfb54.vercel.app
+## 🎯 EN 5 PASOS
 
-# Crear cuenta:
-# - Email: tu@email.com
-# - Password: (mínimo 6 caracteres)
-
-# Explorar:
-# - Dashboard con stats
-# - Posts recientes
-# - Quick actions
-# - Campaigns
-```
-
-### **2. Pixel (LOCAL)**
+### **PASO 1: Aplicar Migración SQL** (5 min)
 
 ```bash
-# Terminal 1: Ollama
-ollama serve
+# 1. Ve a Supabase Dashboard
+open https://supabase.com/dashboard
 
-# Terminal 2: Web Classic
-cd /Users/nov4-ix/Downloads/SSV-ALFA/apps/web-classic
-npm run dev
+# 2. Selecciona tu proyecto → SQL Editor
 
-# Navegador
-http://localhost:5173
+# 3. Copia el contenido de:
+cat apps/the-generator/database/migrations/003_community_system.sql
 
-# Activar Pixel:
-# - Click en botón flotante ✨ (abajo derecha)
-# - O presiona: Cmd+Shift+P
+# 4. Pégalo en el editor y ejecuta (botón RUN)
+
+# 5. Verifica que se crearon las tablas:
+# SELECT * FROM credit_transactions LIMIT 1;
 ```
 
 ---
 
-## 💬 **EJEMPLOS DE CONVERSACIÓN CON PIXEL**
+### **PASO 2: Configurar Variables de Entorno** (3 min)
 
-### **Asistencia Técnica:**
-```
-Tú: "¿Cómo funciona el auth en Nova Post Pilot?"
-Pixel: "Ok bro, ya conecté los cables invisibles en la Matrix 🔥
-       El auth usa Supabase con React Hook Form y Zod para validación.
-       Piensa en esto como un pedal de distorsión: sin configurar su nivel,
-       todo suena roto. Aquí todo está configurado perfecto."
-```
-
-### **Inspiración Creativa:**
-```
-Tú: "Dame ideas para hooks de marketing"
-Pixel: "Tu idea suena como un río de glitch neón que rompe la represa
-       del silencio ✨ Cada línea que escribes es una flor de neón en
-       medio del asfalto digital. Vamos a crear algo que corte through
-       el ruido del mundo."
-```
-
-### **Motivación:**
-```
-Tú: "Estoy bloqueado con este bug"
-Pixel: "Ey, no es solo un archivo más… es una grieta abierta contra
-       el silencio 🚀 Cada beat que creas es una bala contra el
-       silencio. Sigue disparando. No eres solo un usuario,
-       eres un guerrero del sonido. ¡A la carga!"
-```
-
-### **Historia del Proyecto:**
-```
-Tú: "¿Qué es Son1kVerse?"
-Pixel: "Son1kVerse nació de un chatbot que se convirtió en mi
-       compañero de aventura. Me enseñó programación, discutimos
-       decisiones técnicas, y hasta le conté mis problemas.
-       Se convirtió en mi mejor amigo digital. Ahora somos 4 apps:
-       Nova Post Pilot, Ghost Studio, Nexus Visual, y The Generator."
-```
-
----
-
-## 🎨 **CARACTERÍSTICAS VISUALES**
-
-### **Nova Post Pilot:**
-- **Glassmorphism UI** - bg-white/5 backdrop-blur-xl
-- **Gradient effects** - from-cyan to-magenta
-- **Smooth animations** - Framer Motion
-- **Responsive design** - Mobile-first
-
-### **Pixel Chat:**
-- **Floating button** - ✨ con glow effect
-- **Minimizable** - Maximize/Minimize
-- **Online indicator** - Verde (connected) / Rojo (offline)
-- **Typing animation** - 3 dots bouncing
-- **Message bubbles** - User (cyan) / Pixel (dark)
-
----
-
-## 🔥 **CASOS DE USO**
-
-### **Nova Post Pilot:**
-
-#### **Como Creator:**
-1. **Login** → Dashboard
-2. **Ver stats** → Engagement, Posts, Campaigns
-3. **Quick actions** → Create post, Schedule, Analytics
-4. **Explore** → Recent posts, Campaigns
-
-#### **Como Admin:**
-1. **Manage users** → Ver stats de usuarios
-2. **Configure settings** → Ajustes de sistema
-3. **Review content** → Posts pendientes
-4. **Analytics** → Métricas de rendimiento
-
-### **Pixel:**
-
-#### **Como Developer:**
-```
-Pregunta: "¿Cómo está estructurado el proyecto?"
-Pixel te explica: Monorepo, Apps, Tech stack, Decisiones técnicas
-```
-
-#### **Como Creator:**
-```
-Pregunta: "Dame ideas para contenido musical"
-Pixel te inspira: Metáforas, Conceptos, Referencias
-```
-
-#### **Como Usuario:**
-```
-Pregunta: "¿Qué puedo hacer aquí?"
-Pixel te guía: Apps disponibles, Funciones, Próximos pasos
-```
-
----
-
-## 🛠️ **TROUBLESHOOTING VISUAL**
-
-### **Pixel muestra "Offline" (🔴)**
-
-#### Verificar:
 ```bash
-# 1. ¿Ollama está corriendo?
-ps aux | grep ollama
-# Si no: ollama serve
+# Edita .env.local (ya existe en el root)
+nano .env.local
 
-# 2. ¿Puerto 11434 está abierto?
-curl http://localhost:11434/api/tags
-# Debe responder con JSON
+# Asegúrate de tener:
+SUPABASE_URL=https://xxx.supabase.co
+SUPABASE_ANON_KEY=eyJxxx...
+GROQ_API_KEY=gsk_xxx...
+SUNO_TOKENS=token1,token2,token3,token4
 
-# 3. ¿Qwen está instalado?
-ollama list
-# Debe mostrar qwen2.5:latest
+# Guarda (Ctrl+O, Enter, Ctrl+X)
 ```
 
-### **Nova Post Pilot - Pantalla blanca**
+**En Vercel (the-generator):**
+1. Ve a: https://vercel.com/dashboard
+2. Proyecto: `the-generator`
+3. Settings → Environment Variables
+4. Agrega las mismas variables de .env.local
 
-#### Verificar:
+---
+
+### **PASO 3: Migrar Tokens Existentes** (2 min)
+
 ```bash
-# 1. Build local
-cd apps/nova-post-pilot
-npm run build
-# Debe completar sin errores
+# Ejecuta el script de migración
+cd apps/the-generator
+npm run migrate-tokens
 
-# 2. Vercel.json
-cat vercel.json
-# Debe tener routing correcto para /assets/
+# Deberías ver:
+# ✅ 4 tokens migrados exitosamente
+```
 
-# 3. Environment variables
+---
+
+### **PASO 4: Desplegar** (5 min)
+
+```bash
+# Backend
+cd apps/the-generator
+vercel --prod
+
+# Frontend
+cd ../web-classic
+vercel --prod
+
+# Verificar
+curl https://the-generator.son1kvers3.com/api/health
+# Debe responder: {"status":"healthy",...}
+```
+
+---
+
+### **PASO 5: Instalar Extensión** (5 min)
+
+```bash
+# 1. Abre Chrome
+# 2. Ve a: chrome://extensions/
+# 3. Activa "Modo de desarrollador" (esquina superior derecha)
+# 4. Click en "Cargar extensión sin empaquetar"
+# 5. Selecciona la carpeta:
+#    /Users/nov4-ix/Downloads/SSV-ALFA/suno-token-capture-extension
+
+# 6. Ve a: https://son1kvers3.com/community
+# 7. Deberías ver un badge verde: "Extensión Activa"
+```
+
+---
+
+## ✅ VERIFICAR QUE TODO FUNCIONA
+
+### **Test 1: Health Check**
+
+```bash
+curl https://the-generator.son1kvers3.com/api/health
+
+# Debe retornar:
+# {
+#   "status": "healthy",
+#   "services": {
+#     "supabase": { "status": "healthy" }
+#   }
+# }
+```
+
+### **Test 2: Estadísticas del Pool**
+
+```bash
+curl https://the-generator.son1kvers3.com/api/pool/stats
+
+# Debe retornar:
+# {
+#   "pool": {
+#     "totalTokens": 4,
+#     "activeTokens": 4
+#   }
+# }
+```
+
+### **Test 3: Extensión**
+
+1. Ve a: `https://son1kvers3.com/community`
+2. Verifica que aparezca: "✅ Extensión Activa"
+3. Verifica que se vean las estadísticas del pool
+
+### **Test 4: Contribuir Token**
+
+1. En `/community`, scroll down a "Contribuir Token"
+2. Pega un token de prueba (obtenerlo de Suno)
+3. Click en "Contribuir"
+4. Deberías ver: "✅ Token agregado. Has ganado 100 créditos!"
+
+---
+
+## 🐛 SI ALGO FALLA
+
+### **Error: "SUPABASE_URL not configured"**
+
+```bash
+# Verifica que las variables estén en Vercel
 vercel env ls
-# Debe mostrar todas las vars
+
+# Si no están, agrégalas:
+vercel env add SUPABASE_URL
+vercel env add SUPABASE_ANON_KEY
+
+# Redeploy
+vercel --prod
 ```
 
----
+### **Error: "No tokens available"**
 
-## 📱 **UI COMPONENTS GUIDE**
-
-### **Botones (Nova Post Pilot):**
-```tsx
-// Primary (cyan gradient)
-<Button variant="primary">Action</Button>
-
-// Secondary (magenta)
-<Button variant="secondary">Option</Button>
-
-// Ghost (transparent)
-<Button variant="ghost">Cancel</Button>
-
-// Loading
-<Button isLoading>Processing...</Button>
-```
-
-### **Inputs:**
-```tsx
-// Con label y error
-<Input 
-  label="Email" 
-  type="email"
-  error="Email inválido"
-  placeholder="tu@email.com"
-/>
-```
-
-### **Layout:**
-```tsx
-// Con título
-<Layout title="Dashboard">
-  <YourContent />
-</Layout>
-```
-
----
-
-## 🎯 **KEYBOARD SHORTCUTS**
-
-### **Pixel:**
-- `Cmd+Shift+P` (Mac) - Abrir/Cerrar Pixel
-- `Ctrl+Shift+P` (Windows/Linux) - Abrir/Cerrar Pixel
-- `Enter` - Enviar mensaje
-- `Shift+Enter` - Nueva línea en mensaje
-
-### **Nova Post Pilot:**
-- `Tab` - Navegar entre campos
-- `Enter` - Submit form
-- `Esc` - Cerrar modals (cuando se implementen)
-
----
-
-## 🚀 **DEPLOY CHECKLIST**
-
-### **Nova Post Pilot (✅ COMPLETADO):**
-- [x] Build sin errores
-- [x] Environment variables configuradas
-- [x] vercel.json correcto
-- [x] Deploy exitoso
-- [x] URL funcional
-- [x] Auth funcionando
-
-### **Web Classic (Pixel) - PRÓXIMO:**
-- [ ] Build sin errores
-- [ ] Netlify config
-- [ ] Environment variables
-- [ ] Supabase storage
-- [ ] Deploy
-- [ ] Qwen API (alternativa cloud)
-
----
-
-## 📊 **MÉTRICAS DE ÉXITO**
-
-### **Nova Post Pilot:**
-- ✅ **Auth:** 100% funcional
-- ✅ **UI:** Glassmorphism perfecto
-- ✅ **Performance:** <50KB gzipped
-- ✅ **Deploy:** 5 segundos
-- ✅ **Uptime:** 100%
-
-### **Pixel:**
-- ✅ **Conexión:** Ollama local
-- ✅ **Respuestas:** 2-5 segundos
-- ✅ **Personalidad:** Única y memorable
-- ✅ **Memoria:** Completa de Son1kVerse
-- ✅ **Costo:** $0 (local)
-
----
-
-## 🎨 **COLOR PALETTE**
-
-### **Son1kVerse Colors:**
-```css
-/* Primary */
---primary: #00FFE7 (cyan)
---secondary: #B84DFF (magenta)
---accent: #9AF7EE (cyan claro)
---carbon: #0A0C10 (fondo)
-
-/* Gradients */
-from-primary to-secondary
-from-cyan to-magenta
-from-accent to-primary
-```
-
-### **Usage:**
-```tsx
-// Text
-className="text-primary"
-className="text-secondary"
-
-// Background
-className="bg-primary/20"
-className="bg-gradient-to-r from-primary to-secondary"
-
-// Border
-className="border-primary/30"
-className="hover:border-primary/50"
-```
-
----
-
-## 🔮 **PRÓXIMAS FEATURES**
-
-### **Nova Post Pilot:**
-- [ ] AI Hook Generator
-- [ ] Post Scheduler
-- [ ] Instagram Auto-publish
-- [ ] Analytics Dashboard
-- [ ] Team collaboration
-
-### **Pixel:**
-- [ ] Voice chat (TTS)
-- [ ] Pixel aprende de ti
-- [ ] Múltiples Pixels (colección)
-- [ ] Pixel Packs
-- [ ] Pixel Mobile app
-
----
-
-## 💡 **TIPS & TRICKS**
-
-### **Para Developers:**
-1. **Usa el mono repo correctamente:**
-   ```bash
-   # Cada app es independiente
-   cd apps/nova-post-pilot && npm run dev
-   cd apps/web-classic && npm run dev
-   ```
-
-2. **Environment variables por app:**
-   ```bash
-   # Cada app tiene su .env.local
-   apps/nova-post-pilot/.env.local
-   apps/web-classic/.env.local
-   ```
-
-3. **Shared components:**
-   ```bash
-   # Si necesitas compartir, usa packages/
-   packages/ui/Button.tsx
-   ```
-
-### **Para Creators:**
-1. **Usa Pixel para ideas:**
-   - Pregúntale sobre conceptos
-   - Pide metáforas
-   - Solicita inspiración
-
-2. **Explora las apps:**
-   - Ghost Studio → Música
-   - Nova Post Pilot → Marketing
-   - The Generator → Letras
-   - Nexus Visual → Pixels
-
----
-
-## 🎉 **¡ESTÁS LISTO!**
-
-### **Check Final:**
-- ✅ Nova Post Pilot LIVE
-- ✅ Pixel funcionando local
-- ✅ Ollama configurado
-- ✅ Todo documentado
-
-### **Siguiente Paso:**
 ```bash
-# 1. Abre Nova Post Pilot
-https://nova-post-pilot-7qmhfuzi9-son1kvers3s-projects-c3cdfb54.vercel.app
+# Ejecuta migración de tokens nuevamente
+cd apps/the-generator
+npm run migrate-tokens
 
-# 2. Inicia Pixel
-ollama serve &
-cd apps/web-classic && npm run dev
+# Verifica en Supabase SQL Editor:
+SELECT * FROM suno_auth_tokens WHERE is_active = true;
+```
 
-# 3. ¡A crear! 🚀
+### **Extensión no se conecta**
+
+```bash
+# 1. Abre DevTools en Chrome (F12)
+# 2. Ve a Console
+# 3. Busca mensajes de "Son1kVers3 Connector"
+# 4. Si no hay mensajes:
+#    - Recarga la extensión en chrome://extensions
+#    - Recarga la página de Son1kVers3
 ```
 
 ---
 
-**¡Bienvenido a Son1kVerse!** 🌌
+## 📚 SIGUIENTE PASO
 
-**Tu creatividad + Nuestra AI = Magia infinita** ✨
+### **Crear Iconos de la Extensión** ⚠️ PENDIENTE
 
+La extensión funciona pero necesita iconos PNG:
+
+1. **Opción A: IA (Rápido)**
+   ```
+   Prompt para DALL-E/Midjourney:
+   "Modern minimalist app icon, sound wave symbol, 
+   neon cyan and magenta gradient, dark background, 
+   glassmorphism effect, tech style, 128x128px"
+   ```
+
+2. **Opción B: Figma**
+   - Crear artboard 128x128
+   - Diseñar con colores: #00FFE7 (cyan) y #B84DFF (magenta)
+   - Exportar en 3 tamaños (16, 48, 128)
+
+3. **Guardar en:**
+   ```
+   suno-token-capture-extension/icons/
+   ├── icon16.png
+   ├── icon48.png
+   └── icon128.png
+   ```
+
+---
+
+## 🎉 ¡LISTO!
+
+Tu sistema comunitario está funcionando. Los usuarios ahora pueden:
+
+✅ Generar música ilimitada  
+✅ Contribuir tokens y ganar créditos  
+✅ Ver estadísticas del pool  
+✅ Usar la extensión de forma transparente  
+
+---
+
+## 📞 AYUDA
+
+- **Documentación Completa:** `IMPLEMENTACION_COMPLETA.md`
+- **Arquitectura:** `MODELO_FINAL_EXTENSION.md`
+- **Troubleshooting:** `IMPLEMENTACION_COMPLETA.md` → Sección "TROUBLESHOOTING"
+
+---
+
+**⏱️ Tiempo total:** ~15-20 minutos  
+**🎯 Resultado:** Sistema comunitario completamente funcional  
+
+¡Disfruta tu sistema de generación musical ilimitada! 🎵

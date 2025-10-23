@@ -1,0 +1,208 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  username      String   @unique
+  password      String
+  tier          Tier     @default(FREE)
+  isAdmin       Boolean  @default(false)
+  alvaeEnabled  Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  generations   Generation[]
+  analytics     UserAnalytics[]
+  collaborations Collaboration[]
+  tokens        Token[]
+  userExtensions UserExtension[]
+  nfts          NFT[]
+  subscriptions Subscription[]
+}
+
+model Generation {
+  id          String   @id @default(cuid())
+  userId      String
+  prompt      String
+  result      Json
+  status      GenerationStatus @default(PENDING)
+  model       AIModel
+  parameters  Json
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserAnalytics {
+  id          String   @id @default(cuid())
+  userId      String
+  actionType  String
+  metadata    Json?
+  timestamp   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Collaboration {
+  id          String   @id @default(cuid())
+  userId      String
+  projectName String
+  participants Json
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Token {
+  id              String   @id @default(cuid())
+  hash            String   @unique
+  userId          String?
+  email           String?
+  isActive        Boolean  @default(true)
+  isValid         Boolean  @default(true)
+  usageCount      Int      @default(0)
+  rateLimit       Int      @default(10)
+  tier            TokenTier @default(FREE)
+  expiresAt       DateTime?
+  metadata        Json     @default("{}")
+  encryptedToken  String?
+  lastUsed        DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  user            User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  usage           TokenUsage[]
+
+  @@index([userId, isActive])
+  @@index([isValid, usageCount])
+  @@index([tier, isActive])
+}
+
+model TokenUsage {
+  id           String   @id @default(cuid())
+  tokenId      String
+  endpoint     String
+  method       String
+  statusCode   Int
+  responseTime Int
+  timestamp    DateTime @default(now())
+  error        String?
+
+  token        Token    @relation(fields: [tokenId], references: [id], onDelete: Cascade)
+
+  @@index([tokenId, timestamp])
+  @@index([timestamp])
+}
+
+model UserExtension {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  sunoEmail       String?
+  sunoToken       String?
+  isActive        Boolean  @default(true)
+  lastSync        DateTime?
+  syncCount       Int      @default(0)
+  metadata        Json     @default("{}")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model NFT {
+  id              String   @id @default(cuid())
+  tokenId         String   @unique
+  name            String
+  description     String
+  image           String
+  audio           String
+  creatorId       String
+  ownerId         String
+  contractAddress String
+  chain           String
+  metadata        Json
+  attributes      Json     @default("[]")
+  price           String
+  currency        String   @default("ETH")
+  status          NFTStatus @default(AVAILABLE)
+  createdAt       DateTime @default(now())
+  soldAt          DateTime?
+
+  creator         User     @relation(fields: [creatorId], references: [id])
+  owner           User     @relation(fields: [ownerId], references: [id])
+
+  @@index([creatorId])
+  @@index([ownerId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Subscription {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  tier                  Tier
+  status                SubscriptionStatus @default(ACTIVE)
+  stripeSubscriptionId  String?  @unique
+  stripeCustomerId      String?
+  currentPeriodStart    DateTime
+  currentPeriodEnd      DateTime
+  cancelAtPeriodEnd     Boolean  @default(false)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Tier {
+  FREE
+  PREMIUM
+  ENTERPRISE
+}
+
+enum TokenTier {
+  FREE
+  PREMIUM
+  ENTERPRISE
+}
+
+enum GenerationStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum AIModel {
+  SON1K_V1
+  SON1K_V2
+  SON1K_HYBRID
+  CUSTOM
+}
+
+enum NFTStatus {
+  MINTING
+  AVAILABLE
+  SOLD
+  AUCTION
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  UNPAID
+  INCOMPLETE
+}

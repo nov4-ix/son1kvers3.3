@@ -1,24 +1,47 @@
 {
-  "name": "nexus-visual",
-  "version": "1.0.0",
+  "name": "alfassv",
+  "version": "2.0.0",
+  "description": "AI Music Creation Platform",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "turbo dev",
+    "dev:frontend": "vite",
+    "dev:backend": "turbo dev --filter=@son1k/backend",
+    "build": "turbo build",
+    "build:frontend": "tsc && vite build",
+    "build:backend": "turbo build --filter=@son1k/backend",
+    "start": "turbo start",
     "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --fix",
-    "test": "vitest",
-    "test:ui": "vitest --ui"
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "test:ui": "vitest --ui",
+    "db:generate": "turbo db:generate",
+    "db:migrate": "turbo db:migrate",
+    "db:push": "turbo db:push"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
-    "clsx": "^2.0.0",
-    "framer-motion": "^10.16.16",
+    "@hookform/resolvers": "^5.2.2",
+    "@supabase/supabase-js": "^2.75.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^10.18.0",
+    "lucide-react": "^0.545.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwind-merge": "^2.2.0",
-    "zustand": "^4.4.7"
+    "react-hook-form": "^7.65.0",
+    "react-hot-toast": "^2.6.0",
+    "react-router-dom": "^7.9.4",
+    "tailwind-merge": "^2.6.0",
+    "zod": "^4.1.12",
+    "zustand": "^4.5.7",
+    "prisma": "^5.0.0",
+    "@prisma/client": "^5.0.0",
+    "fastify": "^4.0.0",
+    "socket.io": "^4.7.0",
+    "stripe": "^13.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.2.0",
@@ -37,6 +60,8 @@
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.3",
     "vite": "^7.1.9",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "turbo": "^1.10.0",
+    "@types/node": "^20.0.0"
   }
 }
