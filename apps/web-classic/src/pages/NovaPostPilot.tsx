@@ -21,7 +21,7 @@ export const NovaPostPilot: React.FC = () => {
 
   const handleGeneratePost = async () => {
     if (!postContent.trim() || !selectedPlatform) return;
-    
+
     setIsGenerating(true);
     // Simular generación de post
     setTimeout(() => {
@@ -90,40 +90,40 @@ export const NovaPostPilot: React.FC = () => {
         >
           <Card variant="glass" glow>
             <h2 className="text-2xl font-bold text-cyan mb-6">Generación Inteligente de Contenido</h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               <div>
-                <Input
-                  label="Plataforma"
+                <label className="block text-sm font-medium text-gray-300 mb-2">📱 Plataforma</label>
+                <select
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:ring-cyan-500"
                   value={selectedPlatform}
                   onChange={(e) => setSelectedPlatform(e.target.value)}
-                  icon="📱"
                 >
-                  <select className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:ring-cyan-500">
                   <option value="">Selecciona plataforma...</option>
                   {platforms.map((platform) => (
                     <option key={platform.name} value={platform.name}>
                       {platform.icon} {platform.name}
                     </option>
                   ))}
-                </select></div></div>
-              
+                </select>
+              </div>
+
               <div>
-                <Input
-                  label="Estilo de Contenido"
+                <label className="block text-sm font-medium text-gray-300 mb-2">🎨 Estilo de Contenido</label>
+                <select
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:ring-cyan-500"
                   value={selectedStyle}
                   onChange={(e) => setSelectedStyle(e.target.value)}
-                  icon="🎨"
                 >
-                  <select className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:ring-cyan-500">
                   <option value="">Selecciona estilo...</option>
                   {contentStyles.map((style) => (
                     <option key={style.name} value={style.name}>
                       {style.name} - {style.category}
                     </option>
                   ))}
-                </select></div></div>
-              
+                </select>
+              </div>
+
               <div>
                 <Input
                   label="Prompt de Contenido"
@@ -134,7 +134,7 @@ export const NovaPostPilot: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div className="flex justify-center">
               <Button
                 onClick={handleGeneratePost}
@@ -147,7 +147,7 @@ export const NovaPostPilot: React.FC = () => {
                 {isGenerating ? 'Generando Contenido...' : 'Generar Post'}
               </Button>
             </div>
-            
+
             {currentPost && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -213,13 +213,13 @@ export const NovaPostPilot: React.FC = () => {
             </h3>
             <div className="space-y-4 text-gray-300">
               <p>
-                En las calles de Neo-Tokyo, donde la propaganda de XentriX Corp cubre cada muro, 
-                la Resistencia responde con arte callejero auténtico. Cada post generado por Nova Post Pilot 
+                En las calles de Neo-Tokyo, donde la propaganda de XentriX Corp cubre cada muro,
+                la Resistencia responde con arte callejero auténtico. Cada post generado por Nova Post Pilot
                 es como un grafiti digital: una declaración de resistencia contra el control algorítmico.
               </p>
               <p>
-                Los algoritmos de XentriX buscan homogenizar el contenido, pero Nova Post Pilot 
-                preserva la imperfección sagrada de la creatividad humana. Cada post es único, 
+                Los algoritmos de XentriX buscan homogenizar el contenido, pero Nova Post Pilot
+                preserva la imperfección sagrada de la creatividad humana. Cada post es único,
                 cada mensaje es una grieta en el sistema.
               </p>
               <p className="text-purple-400 font-bold">

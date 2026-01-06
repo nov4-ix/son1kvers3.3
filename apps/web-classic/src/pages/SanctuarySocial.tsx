@@ -20,7 +20,7 @@ export const SanctuarySocial: React.FC = () => {
 
   const handleConnect = async () => {
     if (!searchQuery.trim()) return;
-    
+
     setIsConnecting(true);
     // Simular conexión
     setTimeout(() => {
@@ -92,7 +92,7 @@ export const SanctuarySocial: React.FC = () => {
         >
           <Card variant="glass" glow>
             <h2 className="text-2xl font-bold text-cyan mb-6">Conectar con Creadores</h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               <div>
                 <Input
@@ -103,23 +103,23 @@ export const SanctuarySocial: React.FC = () => {
                   icon="🔍"
                 />
               </div>
-              
+
               <div>
-                <Input
-                  label="Categoría"
+                <label className="block text-sm font-medium text-gray-300 mb-2">📂 Categoría</label>
+                <select
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:ring-cyan-500"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  icon="📂"
                 >
-                  <select className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:ring-cyan-500">
                   <option value="">Todas las categorías...</option>
                   {creatorCategories.map((category) => (
                     <option key={category.name} value={category.name}>
                       {category.icon} {category.name}
                     </option>
                   ))}
-                </select></div></div>
-              
+                </select>
+              </div>
+
               <div className="flex items-end">
                 <Button
                   onClick={handleConnect}
@@ -134,7 +134,7 @@ export const SanctuarySocial: React.FC = () => {
                 </Button>
               </div>
             </div>
-            
+
             {currentConnection && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -200,21 +200,19 @@ export const SanctuarySocial: React.FC = () => {
                     <h3 className="text-lg font-bold text-white">{creator.name}</h3>
                     <p className="text-gray-400 text-sm">{creator.role}</p>
                     <div className="flex items-center space-x-2 mt-2">
-                      <span className={`w-2 h-2 rounded-full ${
-                        creator.status === 'online' ? 'bg-green-400' :
-                        creator.status === 'away' ? 'bg-yellow-400' :
-                        'bg-gray-400'
-                      }`} />
+                      <span className={`w-2 h-2 rounded-full ${creator.status === 'online' ? 'bg-green-400' :
+                          creator.status === 'away' ? 'bg-yellow-400' :
+                            'bg-gray-400'
+                        }`} />
                       <span className="text-xs text-gray-400">{creator.status}</span>
                     </div>
                   </div>
                 </div>
                 <div className="mb-4">
-                  <span className={`px-2 py-1 text-xs rounded-full ${
-                    creator.faction === 'ALVAE' ? 'bg-purple-900/30 text-purple-300' :
-                    creator.faction === 'Resistencia' ? 'bg-green-900/30 text-green-300' :
-                    'bg-red-900/30 text-red-300'
-                  }`}>
+                  <span className={`px-2 py-1 text-xs rounded-full ${creator.faction === 'ALVAE' ? 'bg-purple-900/30 text-purple-300' :
+                      creator.faction === 'Resistencia' ? 'bg-green-900/30 text-green-300' :
+                        'bg-red-900/30 text-red-300'
+                    }`}>
                     {creator.faction}
                   </span>
                 </div>
@@ -244,11 +242,11 @@ export const SanctuarySocial: React.FC = () => {
             </h3>
             <div className="space-y-4 text-gray-300">
               <p>
-                El Sanctuary Social es el último refugio de la creatividad auténtica en el mundo digital. 
+                El Sanctuary Social es el último refugio de la creatividad auténtica en el mundo digital.
                 Aquí, los creadores se conectan no por algoritmos, sino por pasión compartida y visión común.
               </p>
               <p>
-                Cada conexión es una grieta en el sistema de XentriX, cada colaboración es un acto de resistencia. 
+                Cada conexión es una grieta en el sistema de XentriX, cada colaboración es un acto de resistencia.
                 En el Santuario, la imperfección es sagrada y la autenticidad es la única moneda válida.
               </p>
               <p className="text-purple-400 font-bold">
