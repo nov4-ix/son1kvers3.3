@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useImageStore } from '../store/useImageStore';
 import { GeneratedImage, ImageGallery } from '../types/imageGenerator';
 
-export const ImageGallery: React.FC = () => {
+export const ImageGalleryDisplay: React.FC = () => {
   const {
     generatedImages,
     galleries,
@@ -16,7 +16,9 @@ export const ImageGallery: React.FC = () => {
     addImageToGallery,
     removeImageFromGallery,
     deleteGallery,
-    getGalleryById
+    deleteGallery,
+    getGalleryById,
+    setSelectedGalleryId
   } = useImageStore();
 
   const [showCreateGallery, setShowCreateGallery] = useState(false);
@@ -82,7 +84,7 @@ export const ImageGallery: React.FC = () => {
               <div className="gallery-count">{generatedImages.length} images</div>
             </div>
           </button>
-          
+
           {galleries.map(gallery => (
             <button
               key={gallery.id}
@@ -127,7 +129,7 @@ export const ImageGallery: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <h4 className="modal-title">Create New Gallery</h4>
-              
+
               <div className="modal-form">
                 <div className="form-group">
                   <label className="form-label">Gallery Name</label>
@@ -139,7 +141,7 @@ export const ImageGallery: React.FC = () => {
                     className="form-input"
                   />
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label">Description</label>
                   <textarea
@@ -151,7 +153,7 @@ export const ImageGallery: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="modal-actions">
                 <button
                   className="modal-btn cancel"
@@ -248,7 +250,7 @@ export const ImageGallery: React.FC = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="image-info">
                 <div className="image-prompt">{image.prompt}</div>
                 <div className="image-meta">
@@ -272,40 +274,40 @@ export const ImageGallery: React.FC = () => {
           className="image-details"
         >
           <h4 className="details-title">Image Details</h4>
-          
+
           <div className="details-content">
             <div className="detail-group">
               <label className="detail-label">Prompt</label>
               <div className="detail-value">{selectedImage.prompt}</div>
             </div>
-            
+
             <div className="detail-group">
               <label className="detail-label">Style</label>
               <div className="detail-value">{selectedImage.style.name}</div>
             </div>
-            
+
             <div className="detail-group">
               <label className="detail-label">Quality</label>
               <div className="detail-value">{selectedImage.quality}</div>
             </div>
-            
+
             <div className="detail-group">
               <label className="detail-label">Aspect Ratio</label>
               <div className="detail-value">{selectedImage.aspectRatio}</div>
             </div>
-            
+
             <div className="detail-group">
               <label className="detail-label">Seed</label>
               <div className="detail-value">{selectedImage.seed}</div>
             </div>
-            
+
             <div className="detail-group">
               <label className="detail-label">Generated</label>
               <div className="detail-value">
                 {new Date(selectedImage.createdAt).toLocaleString()}
               </div>
             </div>
-            
+
             <div className="detail-group">
               <label className="detail-label">File Size</label>
               <div className="detail-value">
@@ -313,7 +315,7 @@ export const ImageGallery: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="details-actions">
             <button
               className="details-btn primary"

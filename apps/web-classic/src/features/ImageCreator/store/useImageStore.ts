@@ -5,34 +5,35 @@ interface ImageState {
   // Generated Images
   generatedImages: GeneratedImage[];
   selectedImageId: string | null;
-  
+
   // Generation State
   isGenerating: boolean;
   generationProgress: number;
   currentGenerationId: string | null;
-  
+
   // Galleries
   galleries: ImageGallery[];
   selectedGalleryId: string | null;
-  
+  setSelectedGalleryId: (galleryId: string | null) => void;
+
   // UI State
   activeView: 'generate' | 'gallery' | 'history';
   sidebarOpen: boolean;
-  
+
   // Actions
   generateImage: (request: ImageGenerationRequest) => Promise<void>;
   setSelectedImage: (imageId: string | null) => void;
   deleteImage: (imageId: string) => void;
   downloadImage: (imageId: string) => void;
-  
+
   createGallery: (name: string, description: string) => void;
   addImageToGallery: (galleryId: string, imageId: string) => void;
   removeImageFromGallery: (galleryId: string, imageId: string) => void;
   deleteGallery: (galleryId: string) => void;
-  
+
   setActiveView: (view: 'generate' | 'gallery' | 'history') => void;
   toggleSidebar: () => void;
-  
+
   // Utility
   getImageById: (imageId: string) => GeneratedImage | undefined;
   getGalleryById: (galleryId: string) => ImageGallery | undefined;
@@ -42,27 +43,27 @@ export const useImageStore = create<ImageState>((set, get) => ({
   // Initial state
   generatedImages: [],
   selectedImageId: null,
-  
+
   isGenerating: false,
   generationProgress: 0,
   currentGenerationId: null,
-  
+
   galleries: [],
   selectedGalleryId: null,
-  
+
   activeView: 'generate',
   sidebarOpen: true,
-  
+
   // Actions
   generateImage: async (request: ImageGenerationRequest) => {
     const generationId = `gen_${Date.now()}`;
-    
+
     set({
       isGenerating: true,
       generationProgress: 0,
       currentGenerationId: generationId
     });
-    
+
     try {
       // Simulate Flux API call with progress updates
       const progressInterval = setInterval(() => {
@@ -70,12 +71,12 @@ export const useImageStore = create<ImageState>((set, get) => ({
           generationProgress: Math.min(state.generationProgress + Math.random() * 20, 90)
         }));
       }, 500);
-      
+
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 3000));
-      
+
       clearInterval(progressInterval);
-      
+
       // Create generated image
       const generatedImage: GeneratedImage = {
         id: `img_${Date.now()}`,
@@ -96,7 +97,7 @@ export const useImageStore = create<ImageState>((set, get) => ({
           version: '1.0.0'
         }
       };
-      
+
       set((state) => ({
         generatedImages: [generatedImage, ...state.generatedImages],
         selectedImageId: generatedImage.id,
@@ -104,12 +105,12 @@ export const useImageStore = create<ImageState>((set, get) => ({
         generationProgress: 100,
         currentGenerationId: null
       }));
-      
+
       // Reset progress after a delay
       setTimeout(() => {
         set({ generationProgress: 0 });
       }, 1000);
-      
+
     } catch (error) {
       console.error('Error generating image:', error);
       set({
@@ -119,11 +120,11 @@ export const useImageStore = create<ImageState>((set, get) => ({
       });
     }
   },
-  
+
   setSelectedImage: (imageId: string | null) => {
     set({ selectedImageId: imageId });
   },
-  
+
   deleteImage: (imageId: string) => {
     set((state) => ({
       generatedImages: state.generatedImages.filter(img => img.id !== imageId),
@@ -134,7 +135,7 @@ export const useImageStore = create<ImageState>((set, get) => ({
       }))
     }));
   },
-  
+
   downloadImage: (imageId: string) => {
     const image = get().getImageById(imageId);
     if (image) {
@@ -144,7 +145,7 @@ export const useImageStore = create<ImageState>((set, get) => ({
       link.click();
     }
   },
-  
+
   createGallery: (name: string, description: string) => {
     const gallery: ImageGallery = {
       id: `gallery_${Date.now()}`,
@@ -156,13 +157,13 @@ export const useImageStore = create<ImageState>((set, get) => ({
       isPublic: false,
       tags: []
     };
-    
+
     set((state) => ({
       galleries: [...state.galleries, gallery],
       selectedGalleryId: gallery.id
     }));
   },
-  
+
   addImageToGallery: (galleryId: string, imageId: string) => {
     const image = get().getImageById(imageId);
     if (image) {
@@ -170,50 +171,54 @@ export const useImageStore = create<ImageState>((set, get) => ({
         galleries: state.galleries.map(gallery =>
           gallery.id === galleryId
             ? {
-                ...gallery,
-                images: [...gallery.images, image],
-                updatedAt: new Date().toISOString()
-              }
+              ...gallery,
+              images: [...gallery.images, image],
+              updatedAt: new Date().toISOString()
+            }
             : gallery
         )
       }));
     }
   },
-  
+
   removeImageFromGallery: (galleryId: string, imageId: string) => {
     set((state) => ({
       galleries: state.galleries.map(gallery =>
         gallery.id === galleryId
           ? {
-              ...gallery,
-              images: gallery.images.filter(img => img.id !== imageId),
-              updatedAt: new Date().toISOString()
-            }
+            ...gallery,
+            images: gallery.images.filter(img => img.id !== imageId),
+            updatedAt: new Date().toISOString()
+          }
           : gallery
       )
     }));
   },
-  
+
   deleteGallery: (galleryId: string) => {
     set((state) => ({
       galleries: state.galleries.filter(gallery => gallery.id !== galleryId),
       selectedGalleryId: state.selectedGalleryId === galleryId ? null : state.selectedGalleryId
     }));
   },
-  
+
+  setSelectedGalleryId: (galleryId: string | null) => {
+    set({ selectedGalleryId: galleryId });
+  },
+
   setActiveView: (view: 'generate' | 'gallery' | 'history') => {
     set({ activeView: view });
   },
-  
+
   toggleSidebar: () => {
     set((state) => ({ sidebarOpen: !state.sidebarOpen }));
   },
-  
+
   // Utility
   getImageById: (imageId: string) => {
     return get().generatedImages.find(img => img.id === imageId);
   },
-  
+
   getGalleryById: (galleryId: string) => {
     return get().galleries.find(gallery => gallery.id === galleryId);
   }

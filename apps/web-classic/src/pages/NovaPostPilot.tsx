@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '../store/useAppStore';
 import { getModuleLore, getFactionInfo } from '../lib/lore';
-import Card from './ui/Card';
-import Button from './ui/Button';
-import Input from './ui/Input';
-import LoadingSpinner from './ui/LoadingSpinner';
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
+import Input from '../components/ui/Input';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 export const NovaPostPilot: React.FC = () => {
   const { addProject } = useAppStore();

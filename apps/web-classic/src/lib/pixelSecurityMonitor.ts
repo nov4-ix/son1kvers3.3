@@ -145,7 +145,7 @@ export class PixelSecurityMonitor {
     }
     
     const tokenChecks = await Promise.allSettled(
-      tokens.map(async (token) => {
+      tokens.map(async (token: any) => {
         try {
           const response = await fetch('https://usa.imgkits.com/node-api/suno/status/test', {
             headers: {
