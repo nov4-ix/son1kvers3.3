@@ -118,8 +118,7 @@ export const SanctuarySocial: React.FC = () => {
                       {category.icon} {category.name}
                     </option>
                   ))}
-                </select>
-              </div>
+                </select></div></div>
               
               <div className="flex items-end">
                 <Button

@@ -106,8 +106,7 @@ export const NovaPostPilot: React.FC = () => {
                       {platform.icon} {platform.name}
                     </option>
                   ))}
-                </select>
-              </div>
+                </select></div></div>
               
               <div>
                 <Input
@@ -123,8 +122,7 @@ export const NovaPostPilot: React.FC = () => {
                       {style.name} - {style.category}
                     </option>
                   ))}
-                </select>
-              </div>
+                </select></div></div>
               
               <div>
                 <Input

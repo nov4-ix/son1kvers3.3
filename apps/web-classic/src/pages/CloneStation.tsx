@@ -20,7 +20,7 @@ export const CloneStation: React.FC = () => {
 
   const handleCloneVoice = async () => {
     if (!voiceText.trim() || !selectedVoice) return;
-    
+
     setIsCloning(true);
     // Simular clonación de voz
     setTimeout(() => {
@@ -83,25 +83,26 @@ export const CloneStation: React.FC = () => {
         >
           <Card variant="glass" glow>
             <h2 className="text-2xl font-bold text-cyan mb-6">Clonación Rápida</h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <Input
-                  label="Seleccionar Voz"
-                  value={selectedVoice}
-                  onChange={(e) => setSelectedVoice(e.target.value)}
-                  icon="🎤"
-                >
-                  <select className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:ring-cyan-500">
-                  <option value="">Selecciona una voz...</option>
-                  {voicePresets.map((voice) => (
-                    <option key={voice.name} value={voice.name}>
-                      {voice.name} - {voice.category}
-                    </option>
-                  ))}
-                </select>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">🎤 Seleccionar Voz</label>
+                  <select
+                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:border-cyan-500 focus:ring-cyan-500"
+                    value={selectedVoice}
+                    onChange={(e) => setSelectedVoice(e.target.value)}
+                  >
+                    <option value="">Selecciona una voz...</option>
+                    {voicePresets.map((voice) => (
+                      <option key={voice.name} value={voice.name}>
+                        {voice.name} - {voice.category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-              
+
               <div>
                 <Input
                   label="Texto a Clonar"
@@ -112,7 +113,7 @@ export const CloneStation: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div className="mt-6 flex justify-center">
               <Button
                 onClick={handleCloneVoice}
@@ -125,7 +126,7 @@ export const CloneStation: React.FC = () => {
                 {isCloning ? 'Clonando Voz...' : 'Iniciar Clonación'}
               </Button>
             </div>
-            
+
             {currentVoice && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -155,11 +156,10 @@ export const CloneStation: React.FC = () => {
               <Card key={index} hover>
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-white">{voice.name}</h3>
-                  <span className={`px-2 py-1 text-xs rounded-full ${
-                    voice.category === 'ALVAE' ? 'bg-purple-900/30 text-purple-300' :
-                    voice.category === 'Resistencia' ? 'bg-green-900/30 text-green-300' :
-                    'bg-red-900/30 text-red-300'
-                  }`}>
+                  <span className={`px-2 py-1 text-xs rounded-full ${voice.category === 'ALVAE' ? 'bg-purple-900/30 text-purple-300' :
+                      voice.category === 'Resistencia' ? 'bg-green-900/30 text-green-300' :
+                        'bg-red-900/30 text-red-300'
+                    }`}>
                     {voice.category}
                   </span>
                 </div>
@@ -190,13 +190,13 @@ export const CloneStation: React.FC = () => {
             </h3>
             <div className="space-y-4 text-gray-300">
               <p>
-                La Clone Station representa uno de los avances más controvertidos de la Resistencia. 
-                Mientras XentriX Corp desarrollaba androides puente con voces algorítmicamente perfectas, 
+                La Clone Station representa uno de los avances más controvertidos de la Resistencia.
+                Mientras XentriX Corp desarrollaba androides puente con voces algorítmicamente perfectas,
                 la Resistencia perfeccionó la clonación de voces auténticas.
               </p>
               <p>
-                Cada voz clonada es un fragmento de humanidad preservada, una resistencia contra 
-                la homogenización sonora del imperio algorítmico. No se trata de imitar, sino de 
+                Cada voz clonada es un fragmento de humanidad preservada, una resistencia contra
+                la homogenización sonora del imperio algorítmico. No se trata de imitar, sino de
                 preservar la esencia única de cada creador.
               </p>
               <p className="text-purple-400 font-bold">
