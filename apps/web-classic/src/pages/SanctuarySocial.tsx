@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '../store/useAppStore';
 import { getModuleLore, getFactionInfo } from '../lib/lore';
-import Card from './ui/Card';
-import Button from './ui/Button';
-import Input from './ui/Input';
-import LoadingSpinner from './ui/LoadingSpinner';
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
+import Input from '../components/ui/Input';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 export const SanctuarySocial: React.FC = () => {
   const { addProject } = useAppStore();
@@ -96,9 +96,8 @@ export const SanctuarySocial: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               <div>
                 <Input
-                  label="Buscar Creador"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
                   placeholder="Nombre, especialidad o proyecto..."
                   icon="🔍"
                 />
@@ -201,8 +200,8 @@ export const SanctuarySocial: React.FC = () => {
                     <p className="text-gray-400 text-sm">{creator.role}</p>
                     <div className="flex items-center space-x-2 mt-2">
                       <span className={`w-2 h-2 rounded-full ${creator.status === 'online' ? 'bg-green-400' :
-                          creator.status === 'away' ? 'bg-yellow-400' :
-                            'bg-gray-400'
+                        creator.status === 'away' ? 'bg-yellow-400' :
+                          'bg-gray-400'
                         }`} />
                       <span className="text-xs text-gray-400">{creator.status}</span>
                     </div>
@@ -210,8 +209,8 @@ export const SanctuarySocial: React.FC = () => {
                 </div>
                 <div className="mb-4">
                   <span className={`px-2 py-1 text-xs rounded-full ${creator.faction === 'ALVAE' ? 'bg-purple-900/30 text-purple-300' :
-                      creator.faction === 'Resistencia' ? 'bg-green-900/30 text-green-300' :
-                        'bg-red-900/30 text-red-300'
+                    creator.faction === 'Resistencia' ? 'bg-green-900/30 text-green-300' :
+                      'bg-red-900/30 text-red-300'
                     }`}>
                     {creator.faction}
                   </span>

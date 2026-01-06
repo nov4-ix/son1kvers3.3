@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 export interface Project {
   id: string;
   name: string;
-  type: 'music' | 'voice' | 'social' | 'nexus';
+  type: 'music' | 'voice' | 'social' | 'nexus' | 'collaboration';
   status: 'active' | 'completed' | 'archived';
   createdAt: Date;
   updatedAt: Date;
@@ -38,41 +38,41 @@ export interface AppState {
   // Projects
   projects: Project[];
   activeProject: Project | null;
-  
+
   // Modules
   modules: Module[];
   activeModule: string | null;
-  
+
   // Pixel Assistant
   pixelMessages: PixelMessage[];
   pixelVisible: boolean;
-  
+
   // UI State
   sidebarOpen: boolean;
   theme: 'dark' | 'light';
-  
+
   // Ritual System
   nexusUnlocked: boolean;
   ritualCount: number;
-  
+
   // Actions
   addProject: (project: Omit<Project, 'id' | 'createdAt' | 'updatedAt'>) => void;
   updateProject: (id: string, updates: Partial<Project>) => void;
   deleteProject: (id: string) => void;
   setActiveProject: (project: Project | null) => void;
-  
+
   setActiveModule: (moduleId: string) => void;
-  
+
   addPixelMessage: (message: Omit<PixelMessage, 'id' | 'timestamp'>) => void;
   clearPixelMessages: () => void;
   togglePixel: () => void;
-  
+
   toggleSidebar: () => void;
   setSidebarOpen: (open: boolean) => void;
-  
+
   toggleTheme: () => void;
   setTheme: (theme: 'dark' | 'light') => void;
-  
+
   unlockNexus: () => void;
   incrementRitualCount: () => void;
 }
@@ -83,7 +83,7 @@ export const useAppStore = create<AppState>()(
       // Initial State
       projects: [],
       activeProject: null,
-      
+
       modules: [
         {
           id: 'ghost-studio',
@@ -152,16 +152,16 @@ export const useAppStore = create<AppState>()(
         }
       ],
       activeModule: null,
-      
+
       pixelMessages: [],
       pixelVisible: false,
-      
+
       sidebarOpen: true,
       theme: 'dark',
-      
+
       nexusUnlocked: false,
       ritualCount: 0,
-      
+
       // Project Actions
       addProject: (projectData) => {
         const newProject: Project = {
@@ -174,7 +174,7 @@ export const useAppStore = create<AppState>()(
           projects: [...state.projects, newProject]
         }));
       },
-      
+
       updateProject: (id, updates) => {
         set((state) => ({
           projects: state.projects.map((project) =>
@@ -184,23 +184,23 @@ export const useAppStore = create<AppState>()(
           )
         }));
       },
-      
+
       deleteProject: (id) => {
         set((state) => ({
           projects: state.projects.filter((project) => project.id !== id),
           activeProject: state.activeProject?.id === id ? null : state.activeProject
         }));
       },
-      
+
       setActiveProject: (project) => {
         set({ activeProject: project });
       },
-      
+
       // Module Actions
       setActiveModule: (moduleId) => {
         set({ activeModule: moduleId });
       },
-      
+
       // Pixel Actions
       addPixelMessage: (messageData) => {
         const newMessage: PixelMessage = {
@@ -212,37 +212,37 @@ export const useAppStore = create<AppState>()(
           pixelMessages: [...state.pixelMessages, newMessage]
         }));
       },
-      
+
       clearPixelMessages: () => {
         set({ pixelMessages: [] });
       },
-      
+
       togglePixel: () => {
         set((state) => ({ pixelVisible: !state.pixelVisible }));
       },
-      
+
       // UI Actions
       toggleSidebar: () => {
         set((state) => ({ sidebarOpen: !state.sidebarOpen }));
       },
-      
+
       setSidebarOpen: (open) => {
         set({ sidebarOpen: open });
       },
-      
+
       toggleTheme: () => {
         set((state) => ({ theme: state.theme === 'dark' ? 'light' : 'dark' }));
       },
-      
+
       setTheme: (theme) => {
         set({ theme });
       },
-      
+
       // Ritual Actions
       unlockNexus: () => {
         set({ nexusUnlocked: true });
       },
-      
+
       incrementRitualCount: () => {
         set((state) => ({ ritualCount: state.ritualCount + 1 }));
       }

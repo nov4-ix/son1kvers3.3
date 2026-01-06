@@ -128,7 +128,7 @@ export const NovaPostPilot: React.FC = () => {
                 <Input
                   label="Prompt de Contenido"
                   value={postContent}
-                  onChange={(e) => setPostContent(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPostContent(e.target.value)}
                   placeholder="Describe el contenido que quieres crear..."
                   icon="✍️"
                 />

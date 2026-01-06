@@ -26,7 +26,7 @@ export const Projects: React.FC = () => {
     }
   };
 
-  const filteredProjects = projects.filter(project => 
+  const filteredProjects = projects.filter(project =>
     activeFilter === 'all' || project.type === activeFilter
   );
 
@@ -238,11 +238,11 @@ export const Projects: React.FC = () => {
         >
           <div className="projects-grid">
             {filteredProjects.map((project, index) => {
-              const moduleLore = getModuleLore(project.type === 'music' ? 'ghost-studio' : 
-                                             project.type === 'voice' ? 'clone-station' :
-                                             project.type === 'social' ? 'nova-post-pilot' : 'sanctuary-social');
+              const moduleLore = getModuleLore(project.type === 'music' ? 'ghost-studio' :
+                project.type === 'voice' ? 'clone-station' :
+                  project.type === 'social' ? 'nova-post-pilot' : 'sanctuary-social');
               const factionInfo = getFactionInfo(getProjectFaction(project.type));
-              
+
               return (
                 <motion.div
                   key={project.id}
@@ -260,11 +260,11 @@ export const Projects: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="project-content">
                     <h3 className="project-name">{project.name}</h3>
                     <p className="project-type">{project.type}</p>
-                    
+
                     {moduleLore && (
                       <div className="project-lore">
                         <div className="lore-faction">
@@ -277,7 +277,7 @@ export const Projects: React.FC = () => {
                         </p>
                       </div>
                     )}
-                    
+
                     <div className="project-meta">
                       <span className="project-date">
                         Creado: {new Date(project.createdAt).toLocaleDateString()}
@@ -287,7 +287,7 @@ export const Projects: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="project-actions">
                     <button className="action-btn primary">✏️ Editar</button>
                     <button className="action-btn secondary">👁️ Ver</button>
@@ -297,13 +297,13 @@ export const Projects: React.FC = () => {
               );
             })}
           </div>
-          
+
           {filteredProjects.length === 0 && (
             <div className="empty-projects">
               <div className="empty-icon">📁</div>
               <h3 className="empty-title">No hay proyectos</h3>
               <p className="empty-description">
-                {activeFilter === 'all' 
+                {activeFilter === 'all'
                   ? 'Crea tu primer proyecto para comenzar tu viaje creativo en el Son1kVerse'
                   : `No tienes proyectos de tipo ${activeFilter}`
                 }
