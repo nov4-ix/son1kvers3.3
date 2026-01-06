@@ -1,11 +1,13 @@
 [build]
 builder = "nixpacks"
+buildCommand = "pnpm install && pnpm db:generate"
 
 [deploy]
-startCommand = "cd apps/the-generator && npm run build && npm start"
-healthcheckPath = "/"
-healthcheckTimeout = 300
+startCommand = "pnpm --filter @son1kvers3/backend start"
+healthcheckPath = "/health"
+healthcheckTimeout = 100
 restartPolicyType = "on_failure"
 
 [env]
 NODE_ENV = "production"
+PORT = "3000"
