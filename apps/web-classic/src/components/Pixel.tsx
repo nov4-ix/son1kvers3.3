@@ -55,7 +55,7 @@ export const Pixel: React.FC<PixelProps> = ({ isVisible, onToggle, currentModule
     if (currentModule && contextualMessages[currentModule as keyof typeof contextualMessages]) {
       const moduleMessages = contextualMessages[currentModule as keyof typeof contextualMessages];
       const randomMessage = moduleMessages[Math.floor(Math.random() * moduleMessages.length)];
-      
+
       setTimeout(() => {
         addMessage(randomMessage, 'info');
       }, 1000);
@@ -70,7 +70,7 @@ export const Pixel: React.FC<PixelProps> = ({ isVisible, onToggle, currentModule
       timestamp: new Date(),
       isUser
     };
-    
+
     setMessages(prev => [...prev, newMessage]);
     setIsTyping(false);
   };
@@ -92,9 +92,9 @@ export const Pixel: React.FC<PixelProps> = ({ isVisible, onToggle, currentModule
         "¿Te gustaría que exploremos juntos las posibilidades creativas?",
         "Tu enfoque es único. ¿Cómo llegaste a esa conclusión?"
       ];
-      
+
       const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-      addMessage(randomResponse, 'thoughtful');
+      addMessage(randomResponse, 'suggestion');
     }, 1500);
   };
 
@@ -145,7 +145,7 @@ export const Pixel: React.FC<PixelProps> = ({ isVisible, onToggle, currentModule
         >
           {getMoodIcon()}
         </motion.div>
-        
+
         {/* Particle Effects */}
         <div className="pixel-effects">
           <motion.div
@@ -209,7 +209,7 @@ export const Pixel: React.FC<PixelProps> = ({ isVisible, onToggle, currentModule
             </motion.div>
           ))}
         </AnimatePresence>
-        
+
         {isTyping && (
           <motion.div
             className="typing-indicator"

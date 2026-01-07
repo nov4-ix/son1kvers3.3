@@ -1,10 +1,10 @@
 // apps/web-classic/src/lib/pixelSecurityMonitor.ts
 export class PixelSecurityMonitor {
   private riskLevel: 'low' | 'medium' | 'high' | 'critical' = 'low';
-  private monitoringInterval: NodeJS.Timeout | null = null;
+  private monitoringInterval: any | null = null;
   private consecutiveFailures: number = 0;
   private lastCheck: number = 0;
-  
+
   // Configuración de monitoreo
   private monitoringConfig = {
     checkInterval: 30000, // 30 segundos
@@ -22,7 +22,7 @@ export class PixelSecurityMonitor {
 
   async startMonitoring() {
     console.log('🛡️ Pixel Security Monitor iniciado');
-    
+
     this.monitoringInterval = setInterval(async () => {
       await this.performSecurityCheck();
     }, this.monitoringConfig.checkInterval);
@@ -51,19 +51,19 @@ export class PixelSecurityMonitor {
   async performSecurityCheck() {
     try {
       this.lastCheck = Date.now();
-      
+
       // 1. Verificar salud de endpoints
       const endpointHealth = await this.checkEndpointHealth();
-      
+
       // 2. Analizar patrones de tráfico
       const trafficAnalysis = await this.analyzeTrafficPatterns();
-      
+
       // 3. Verificar tokens
       const tokenHealth = await this.checkTokenHealth();
-      
+
       // 4. Detectar anomalías
       const anomalies = await this.detectAnomalies();
-      
+
       // 5. Calcular nivel de riesgo
       const riskScore = this.calculateRiskScore({
         endpointHealth,
@@ -71,15 +71,15 @@ export class PixelSecurityMonitor {
         tokenHealth,
         anomalies
       });
-      
+
       // 6. Actuar según el nivel de riesgo
       await this.respondToRisk(riskScore);
-      
+
       // Resetear contador de fallos si todo está bien
       if (riskScore < this.monitoringConfig.riskThresholds.medium) {
         this.consecutiveFailures = 0;
       }
-      
+
     } catch (error) {
       console.error('Error en monitoreo de seguridad:', error);
       this.consecutiveFailures++;
@@ -98,12 +98,12 @@ export class PixelSecurityMonitor {
       endpoints.map(async (endpoint) => {
         try {
           const start = Date.now();
-          const response = await fetch(endpoint, { 
+          const response = await fetch(endpoint, {
             method: 'HEAD',
             signal: AbortSignal.timeout(5000)
           });
           const latency = Date.now() - start;
-          
+
           return {
             endpoint,
             status: response.ok,
@@ -116,7 +116,7 @@ export class PixelSecurityMonitor {
             status: false,
             latency: 5000,
             statusCode: 0,
-            error: error.message
+            error: (error as any).message
           };
         }
       })
@@ -128,7 +128,7 @@ export class PixelSecurityMonitor {
   private async analyzeTrafficPatterns() {
     // Obtener métricas de tráfico recientes
     const recentRequests = await this.getRecentRequests();
-    
+
     return {
       requestFrequency: this.calculateRequestFrequency(recentRequests),
       errorRate: this.calculateErrorRate(recentRequests),
@@ -139,11 +139,11 @@ export class PixelSecurityMonitor {
   private async checkTokenHealth() {
     // Verificar salud de tokens activos
     const tokens = await this.getActiveTokens();
-    
+
     if (tokens.length === 0) {
       return [{ healthy: false, error: 'No tokens available' }];
     }
-    
+
     const tokenChecks = await Promise.allSettled(
       tokens.map(async (token: any) => {
         try {
@@ -154,7 +154,7 @@ export class PixelSecurityMonitor {
             },
             signal: AbortSignal.timeout(3000)
           });
-          
+
           return {
             token: token.substring(0, 10) + '...',
             healthy: response.ok,
@@ -175,7 +175,7 @@ export class PixelSecurityMonitor {
 
   private async detectAnomalies() {
     const metrics = await this.getSystemMetrics();
-    
+
     return {
       highLatency: metrics.averageLatency > 10000,
       highErrorRate: metrics.errorRate > 0.3,
@@ -187,36 +187,36 @@ export class PixelSecurityMonitor {
 
   private calculateRiskScore(data: any): number {
     let score = 0;
-    
+
     // Endpoint health (40% weight)
     const healthyEndpoints = data.endpointHealth.filter((h: any) => h?.status).length;
     const totalEndpoints = data.endpointHealth.length;
     if (totalEndpoints > 0) {
       score += (1 - healthyEndpoints / totalEndpoints) * 0.4;
     }
-    
+
     // Traffic analysis (30% weight)
     if (data.trafficAnalysis.errorRate > 0.2) score += 0.3;
     if (data.trafficAnalysis.suspiciousPatterns.length > 0) score += 0.2;
-    
+
     // Token health (20% weight)
     const healthyTokens = data.tokenHealth.filter((t: any) => t?.healthy).length;
     const totalTokens = data.tokenHealth.length;
     if (totalTokens > 0) {
       score += (1 - healthyTokens / totalTokens) * 0.2;
     }
-    
+
     // Anomalies (10% weight)
     if (data.anomalies.highLatency) score += 0.05;
     if (data.anomalies.highErrorRate) score += 0.05;
     if (data.anomalies.consecutiveFailures) score += 0.1;
-    
+
     return Math.min(score, 1);
   }
 
   private async respondToRisk(riskScore: number) {
     const previousLevel = this.riskLevel;
-    
+
     if (riskScore >= this.monitoringConfig.riskThresholds.critical) {
       this.riskLevel = 'critical';
       await this.activateCriticalProtection();
@@ -230,7 +230,7 @@ export class PixelSecurityMonitor {
       this.riskLevel = 'low';
       await this.maintainNormalOperation();
     }
-    
+
     // Emitir evento si el nivel cambió
     if (previousLevel !== this.riskLevel) {
       this.emit('riskLevelChanged', {
@@ -244,7 +244,7 @@ export class PixelSecurityMonitor {
   private async activateCriticalProtection() {
     console.log('🚨🚨 CRÍTICO: Pixel activando protección máxima!');
     this.emit('criticalRiskDetected');
-    
+
     // Activar todas las protecciones
     this.emit('activateVPN', 'Critical risk detected');
     this.emit('createProxies', 'Emergency proxy creation');
@@ -258,7 +258,7 @@ export class PixelSecurityMonitor {
   private async activateHighProtection() {
     console.log('🚨 ALERTA ALTA: Pixel activando protecciones avanzadas!');
     this.emit('highRiskDetected');
-    
+
     // Activar protecciones avanzadas
     this.emit('activateVPN', 'High risk detected');
     this.emit('createProxies', 'High risk proxy creation');
@@ -271,7 +271,7 @@ export class PixelSecurityMonitor {
   private async activateMediumProtection() {
     console.log('⚠️ Riesgo medio detectado, aumentando vigilancia');
     this.emit('mediumRiskDetected');
-    
+
     // Aumentar vigilancia
     this.emit('increaseMonitoring');
     this.emit('notifyUser', {
@@ -292,7 +292,7 @@ export class PixelSecurityMonitor {
         consecutiveFailures: this.consecutiveFailures,
         lastCheck: this.lastCheck
       });
-      
+
       // Activar modo de emergencia
       await this.activateCriticalProtection();
     }

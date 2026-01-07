@@ -18,7 +18,7 @@ const Input: React.FC<InputProps> = ({
   ...props
 }) => {
   const baseClasses = 'w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900';
-  
+
   const variants = {
     default: 'bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-cyan-500',
     ghost: 'bg-transparent border-b border-gray-700 rounded-none focus:border-cyan-500 focus:ring-cyan-500',
@@ -39,7 +39,10 @@ const Input: React.FC<InputProps> = ({
           </div>
         )}
         <motion.input
-          whileFocus={{ scale: 1.02 }}
+          {...({
+            whileFocus: { scale: 1.02 }
+
+          } as any)}
           className={cn(
             baseClasses,
             variants[variant],

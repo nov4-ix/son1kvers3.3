@@ -52,18 +52,18 @@ export class PixelLearningSystem {
     try {
       // Cargar perfil de aprendizaje existente
       this.learningProfile = await this.loadLearningProfile();
-      
+
       // Si no existe, crear uno nuevo
       if (!this.learningProfile) {
         this.learningProfile = await this.createInitialProfile();
       }
-      
+
       // Cargar insights existentes
       this.insights = await this.loadInsights();
-      
+
       // Aplicar preferencias al outfit engine
       this.applyUserPreferences();
-      
+
     } catch (error) {
       console.error('Error initializing learning system:', error);
     }
@@ -109,12 +109,12 @@ export class PixelLearningSystem {
   private async loadLearningProfile(): Promise<UserLearningProfile | null> {
     try {
       const memories = await PixelDatabase.getUserMemories(this.userId, 'preference');
-      const profileMemory = memories.find(m => m.metadata?.type === 'learning_profile');
-      
+      const profileMemory = memories.find((m: any) => m.metadata?.type === 'learning_profile');
+
       if (profileMemory) {
         return JSON.parse(profileMemory.content);
       }
-      
+
       return null;
     } catch (error) {
       console.error('Error loading learning profile:', error);
@@ -127,8 +127,8 @@ export class PixelLearningSystem {
     try {
       const memories = await PixelDatabase.getUserMemories(this.userId, 'context');
       return memories
-        .filter(m => m.metadata?.type === 'insight')
-        .map(m => JSON.parse(m.content));
+        .filter((m: any) => m.metadata?.type === 'insight')
+        .map((m: any) => JSON.parse(m.content));
     } catch (error) {
       console.error('Error loading insights:', error);
       return [];
@@ -140,7 +140,7 @@ export class PixelLearningSystem {
     if (this.learningProfile) {
       // Cambiar outfit preferido
       this.outfitEngine.changeOutfit(this.learningProfile.preferences.preferred_outfit);
-      
+
       // Aplicar estilo de comunicación
       this.updateCommunicationStyle();
     }
@@ -149,9 +149,9 @@ export class PixelLearningSystem {
   // Actualizar estilo de comunicación
   private updateCommunicationStyle() {
     if (!this.learningProfile) return;
-    
+
     const style = this.learningProfile.preferences.communication_style;
-    
+
     // Ajustar frases según el estilo
     switch (style) {
       case 'casual':
@@ -176,16 +176,16 @@ export class PixelLearningSystem {
     try {
       // Actualizar comportamientos aprendidos
       this.updateLearnedBehaviors(userMessage, pixelResponse, success);
-      
+
       // Generar insights
       await this.generateInsights(userMessage, pixelResponse);
-      
+
       // Actualizar perfil
       await this.updateLearningProfile();
-      
+
       // Guardar en base de datos
       await this.saveLearningData();
-      
+
     } catch (error) {
       console.error('Error learning from interaction:', error);
     }
@@ -197,7 +197,7 @@ export class PixelLearningSystem {
 
     // Extraer palabras clave del mensaje
     const keywords = this.extractKeywords(userMessage);
-    
+
     // Actualizar requests comunes
     keywords.forEach(keyword => {
       if (!this.learningProfile!.learned_behaviors.common_requests.includes(keyword)) {
@@ -208,14 +208,14 @@ export class PixelLearningSystem {
     // Si fue exitoso, agregar a respuestas preferidas
     if (success) {
       this.learningProfile.learned_behaviors.successful_interactions++;
-      
+
       if (!this.learningProfile.learned_behaviors.preferred_responses.includes(pixelResponse)) {
         this.learningProfile.learned_behaviors.preferred_responses.push(pixelResponse);
       }
     }
 
     // Actualizar nivel de adaptación
-    this.learningProfile.adaptation_level = Math.min(1, 
+    this.learningProfile.adaptation_level = Math.min(1,
       this.learningProfile.adaptation_level + 0.01
     );
   }
@@ -225,7 +225,7 @@ export class PixelLearningSystem {
     try {
       // Analizar patrones en el mensaje
       const patterns = this.analyzePatterns(userMessage);
-      
+
       // Crear insights
       for (const pattern of patterns) {
         const insight: LearningInsight = {
@@ -240,16 +240,16 @@ export class PixelLearningSystem {
 
         this.insights.push(insight);
       }
-      
+
     } catch (error) {
       console.error('Error generating insights:', error);
     }
   }
 
   // Analizar patrones
-  private analyzePatterns(message: string): Array<{description: string, confidence: number}> {
+  private analyzePatterns(message: string): Array<{ description: string, confidence: number }> {
     const patterns = [];
-    
+
     // Patrón: Preguntas técnicas
     if (message.includes('cómo') || message.includes('por qué') || message.includes('qué')) {
       patterns.push({
@@ -257,7 +257,7 @@ export class PixelLearningSystem {
         confidence: 0.8
       });
     }
-    
+
     // Patrón: Solicitudes de ayuda
     if (message.includes('ayuda') || message.includes('problema') || message.includes('error')) {
       patterns.push({
@@ -265,7 +265,7 @@ export class PixelLearningSystem {
         confidence: 0.9
       });
     }
-    
+
     // Patrón: Comentarios positivos
     if (message.includes('gracias') || message.includes('genial') || message.includes('perfecto')) {
       patterns.push({
@@ -273,7 +273,7 @@ export class PixelLearningSystem {
         confidence: 0.7
       });
     }
-    
+
     return patterns;
   }
 
@@ -283,7 +283,7 @@ export class PixelLearningSystem {
       .replace(/[^\w\s]/g, '')
       .split(/\s+/)
       .filter(word => word.length > 3);
-    
+
     return [...new Set(words)];
   }
 
@@ -292,7 +292,7 @@ export class PixelLearningSystem {
     if (!this.learningProfile) return;
 
     this.learningProfile.last_updated = new Date();
-    
+
     // Actualizar preferencias basadas en insights
     this.updatePreferencesFromInsights();
   }
@@ -302,18 +302,18 @@ export class PixelLearningSystem {
     if (!this.learningProfile) return;
 
     // Analizar insights para actualizar preferencias
-    const technicalInsights = this.insights.filter(i => 
+    const technicalInsights = this.insights.filter(i =>
       i.content.includes('técnico') || i.content.includes('técnica')
     );
-    
+
     if (technicalInsights.length > 3) {
       this.learningProfile.preferences.communication_style = 'technical';
     }
-    
-    const poeticInsights = this.insights.filter(i => 
+
+    const poeticInsights = this.insights.filter(i =>
       i.content.includes('poético') || i.content.includes('metáfora')
     );
-    
+
     if (poeticInsights.length > 2) {
       this.learningProfile.preferences.communication_style = 'poetic';
     }
@@ -339,7 +339,7 @@ export class PixelLearningSystem {
           metadata: { type: 'insight' }
         });
       }
-      
+
     } catch (error) {
       console.error('Error saving learning data:', error);
     }
@@ -348,7 +348,7 @@ export class PixelLearningSystem {
   // Obtener tiempo del día
   private getTimeOfDay(): 'morning' | 'afternoon' | 'evening' | 'night' {
     const hour = new Date().getHours();
-    
+
     if (hour >= 6 && hour < 12) return 'morning';
     if (hour >= 12 && hour < 18) return 'afternoon';
     if (hour >= 18 && hour < 22) return 'evening';

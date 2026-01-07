@@ -14,8 +14,6 @@ export const ImageGalleryDisplay: React.FC = () => {
     downloadImage,
     createGallery,
     addImageToGallery,
-    removeImageFromGallery,
-    deleteGallery,
     deleteGallery,
     getGalleryById,
     setSelectedGalleryId
