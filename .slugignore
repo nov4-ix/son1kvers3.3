@@ -1,0 +1,14 @@
+node_modules
+.git
+.turbo
+.vercel
+dist
+dist_electron
+apps/*/dist
+apps/*/node_modules
+packages/*/dist
+packages/*/node_modules
+**/*.log
+**/*.tsbuildinfo
+coverage
+.DS_Store
