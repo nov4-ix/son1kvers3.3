@@ -4,6 +4,14 @@
   "description": "AI Music Creation Platform",
   "type": "module",
   "private": true,
+  "pnpm": {
+    "neverBuiltDependencies": [
+      "canvas",
+      "sharp",
+      "bufferutil",
+      "utf-8-validate"
+    ]
+  },
   "scripts": {
     "dev": "turbo dev",
     "dev:frontend": "vite",
