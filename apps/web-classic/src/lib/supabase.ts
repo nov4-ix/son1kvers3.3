@@ -22,8 +22,8 @@ export type PixelMemory = {
 };
 
 export const PixelDatabase = {
-    async getUserMemories(userId: string, type: string) { return [] as any[]; },
+    async getUserMemories(userId: string, type?: string) { return [] as any[]; },
     async saveMemory(memory: any) { },
     async saveMessage(message: any) { },
-    async getUserMessages(userId: string) { return [] as any[]; }
+    async getUserMessages(userId: string, limit?: number) { return [] as any[]; }
 }
